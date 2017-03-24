@@ -1,0 +1,96 @@
+/* css/header
+**
+** Archivo de estilos para la sección del header
+** ================================================
+*/
+
+body {
+  margin-top: 101px;
+}
+
+/*
+** Estilos de header compartido (en secciones)
+** --------------------------------------------
+*/
+
+.header-section { margin: 50px 0 40px; }
+.header-section p strong { text-transform: uppercase; font-size: 12px; }
+.header-section select { margin-bottom: 11px; }
+.header-section button { margin-bottom: 11px; }
+
+/*
+** Global header
+** -------------------------------
+*/
+
+.header-bkg {
+  height: 350px;
+  padding: 50px 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.header-expanded {
+  margin-bottom: 0;
+  text-align: center;
+  color: #fff;
+  background: #424242 url('../images/header.png') no-repeat center center;
+  background-size: cover;
+}
+
+.header-expanded h2 {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.header-info {
+  padding-top: 35px;
+}
+
+.breadcrumb-container {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+** Sección de calendario
+** -------------------------------
+*/
+
+#calendar-viz {
+  height: 600px;
+}
+
+/*
+** Sección de estatus de carpeta
+** -------------------------------
+*/
+
+#status-viz {
+  height: 600px;
+}
+
+.header-status button {
+  height: 50px;
+  margin-bottom: 0;
+  white-space: normal;
+  line-height: 1.1;
+}
+
+/*
+** Sección de mapa
+** -------------------------------
+*/
+
+#map-viz {
+  height: 600px;
+}
+
+/*
+** Sección de seguimiento de carpeta
+** -------------------------------
+*/
+
+#tracking-viz {
+  height: 600px;
+}

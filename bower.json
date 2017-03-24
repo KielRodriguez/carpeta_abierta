@@ -1,0 +1,24 @@
+{
+  "name": "carpeta_abierta",
+  "authors": [
+    "Giovanni Mendoza <giovanni.mendoza@datos.mx>"
+  ],
+  "description": "Carpeta abierta de la PGR para que los usuarios puedan ver en tiempo real el status de su denuncia",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "fontawesome#^4.6.3",
+    "webcomponentsjs": "^0.7.22",
+    "polymer": "^1.5.0",
+    "dgm-navbar": "mxabierto/dgm-navbar#latest",
+    "dgm-footer": "mxabierto/dgm-footer#latest",
+    "d3plus": "^1.9.8"
+  }
+}
