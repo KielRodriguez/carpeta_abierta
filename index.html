@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="https://datos.gob.mx/img/favicon.ico">
+  <title>Carpeta abierta</title>
+  <!-- Polymer -->
+  <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/polymer/polymer.html">
+  <link rel="import" href="bower_components/dgm-navbar/dgm-navbar.html">
+  <link rel="import" href="bower_components/dgm-footer/dgm-footer.html">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel='stylesheet' href='css/main.css' />
+  <link rel='stylesheet' href='css/carpeta_abierta.css' />
+</head>
+<body>
+
+  <dgm-navbar></dgm-navbar>
+<!-- Header -->
+  <div class="header-expanded">
+    <div class="header-bkg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center">Visualizaciones</p>
+            <h2>Carpeta Abierta PGR</h2>
+          </div>
+          <div class="col-md-10 col-md-offset-1">
+            <p class="header-info">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="breadcrumb-container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7">
+          <ul class="breadcrumb">
+            <li>
+              <a href="http://datos.gob.mx/">
+                <i class="glyphicon glyphicon-home"></i>
+              </a>
+            </li>
+            <li class="active"><a href="http://datos.gob.mx/carpeta_abierta">Carpeta abierta PGR</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <!-- Sección de calendario -->
+    <div id="calendar">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Calendario de carpetas</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="header-section well">
+            <div class="row">
+              <div class="col-md-3">
+                <p><strong>Indicadores</strong></p>
+                <select id="indicators" class="form-control">
+                  <option value="total">Total de cambios</option>
+                  <option value="one">Sólo un cambio</option>
+                  <option value="two">Dos cambios</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Filtros</strong></p>
+                <select id="indicators" class="form-control">
+                  <option value="total">Tipo de delito</option>
+                  <option value="one">Otro tipo de delito</option>
+                  <option value="two">Un delito más</option>
+                </select>
+                <select id="indicators" class="form-control">
+                  <option value="total">Agencia del ministerio público</option>
+                  <option value="one">Otra agencia</option>
+                  <option value="two">Una agencia más</option>
+                </select>
+                <select id="indicators" class="form-control">
+                  <option value="total">Unidad administrativa</option>
+                  <option value="one">Otra unidad</option>
+                  <option value="two">Una unidad más</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Año</strong></p>
+                <select id="indicators" class="form-control">
+                  <option value="total">2017</option>
+                  <option value="one">2016</option>
+                  <option value="two">2015</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Total de cambios</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="calendar-viz" class="col-md-12">
+          <p>Calendario va aquí</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de estatus -->
+    <div id="status">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Estatus actual de las carpetas</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="header-section header-status well">
+            <div class="row">
+              <div class="col-md-2">
+                <button class="btn btn-block btn-primary">Delito</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block btn-default">Proceso penal</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block btn-default">Unidad administrativa</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block btn-default">Ministerio público</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block btn-default">Entidad</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block btn-default">Sentencia</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="status-viz" class="col-md-12">
+          <p>Status va aquí</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de mapa -->
+    <div id="map">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Mapa coroplético</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="header-section well">
+            <div class="row">
+              <div class="col-md-3">
+                <p><strong>Nivel</strong></p>
+                <button class="btn btn-block btn-primary">Municipal</button>
+                <button class="btn btn-block btn-default">Estatal</button>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Filtros</strong></p>
+                <select id="indicators" class="form-control">
+                  <option value="total">Tipo de delito</option>
+                  <option value="one">Otro tipo de delito</option>
+                  <option value="two">Un delito más</option>
+                </select>
+                <select id="indicators" class="form-control">
+                  <option value="total">Agencia del ministerio público</option>
+                  <option value="one">Otra agencia</option>
+                  <option value="two">Una agencia más</option>
+                </select>
+                <select id="indicators" class="form-control">
+                  <option value="total">Unidad administrativa</option>
+                  <option value="one">Otra unidad</option>
+                  <option value="two">Una unidad más</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Año</strong></p>
+                <select id="indicators" class="form-control">
+                  <option value="total">2017</option>
+                  <option value="one">2016</option>
+                  <option value="two">2015</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Total de cambios</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="map-viz" class="col-md-12">
+          <p>Mapa va aquí</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de seguimiento de carpeta -->
+    <div id="tracking">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Seguimiento de carpeta</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="header-section well">
+            <div class="row">
+              <div class="col-md-5">
+                <p><strong>Carpeta</strong></p>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="EJ. FED/PUE/PBL/00059593/2016" />
+                  <div class="input-group-addon">Buscar</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Año</strong></p>
+                <select id="indicators" class="form-control">
+                  <option value="total">2017</option>
+                  <option value="one">2016</option>
+                  <option value="two">2015</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <p><strong>Total de cambios</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="tracking-viz" class="col-md-12">
+          <p>Seguimiento va aquí</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <dgm-footer></dgm-footer>
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- BOOTSTRAP -->
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+</body>
+</html>
