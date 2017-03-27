@@ -7,6 +7,6 @@ Carpeta abierta es un visualizador en tiempo real de los reportes que son hechos
     cd carpeta_abierta
     npm install -g http-server
     bower install
-    http-serve
+    http-server
 
 Ir a: localhost:8080
