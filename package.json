@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "Carpeta abierta es un visualizador en tiempo real de los reportes que son hechos en la PGR",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --config webpack.config.js"
   },
   "author": "Giovanni Mendoza",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.2",
+    "webpack-uglify-js-plugin": "^1.1.9"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
   }
 }
