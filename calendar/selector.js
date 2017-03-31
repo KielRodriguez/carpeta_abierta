@@ -11,10 +11,10 @@
 
   exports.Selector = {
     watching: function() {
-      var $changes = $('#changes');
-      var $crime = $('#crime');
-      var $agency = $('#agency');
-      var $unity = $('#unity');
+      var $changes = $('#calendar-changes');
+      var $crime = $('#calendar-crime');
+      var $agency = $('#calendar-agency');
+      var $unity = $('#calendar-unity');
     }
   };
 })();
