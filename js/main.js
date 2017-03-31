@@ -8,5 +8,8 @@
   'use strict';
 
   // Módulo de calendario
-  require('../calendar/generator.js');
+  //require('../calendar/selector.js');
+
+  // Módulo de status
+  require('../status/selector.js');
 })();
