@@ -88,6 +88,8 @@ body {
   padding: 0;
 }
 
+[id*="-viz"] { margin-bottom: 40px; }
+
 /*
 ** Sección de calendario
 ** -------------------------------
