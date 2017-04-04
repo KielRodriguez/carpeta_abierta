@@ -76,7 +76,6 @@ body {
 .header-expanded h2 {
   color: #fff;
   font-size: 25px;
-  font-weight: 300;
 }
 
 .header-info {
@@ -115,6 +114,17 @@ body {
   line-height: 1.1;
 }
 
+#status-activators { margin: 30px 0; }
+#status-activators button {
+  width: 170px;
+  margin: 0 6px 10px 0;
+  font-weight: bold;
+  font-size: 13px;
+}
+#status-activators button:last-child {
+  margin-right: 0;
+}
+
 /*
 ** Sección de mapa
 ** -------------------------------
@@ -144,3 +154,12 @@ body {
 .searcher-insert:active {
   background-color: #00aa80;
 }
+
+/*
+** Seleccionador de archivos
+** ------------------------------
+*/
+
+.select-file { margin-bottom: 50px; }
+button.create { margin-top: 36px; }
+span.selection { height: 34px; }

@@ -41,10 +41,10 @@
         .type("tree_map") //visualization type
         .size("valor") //sizing of blocks
         .color({
-          "heatmap": [ "#d16d65" , "#e2893b", "#ebad69", "#edd268", "#bad4a3" ],
+          "heatmap": [ "#34dab3" , "#00cc99", "#158a8c" ],
           "value": "valor"
         })
-        .font({ "family": "'Open Sans', Helvetica, Arial, sans-serif", "size": 14 })
+        .font({ "family": "'Open Sans', Helvetica, Arial, sans-serif", "size": 14, "weight": 500 })
         .format({
           "text": function(text, params) {
 

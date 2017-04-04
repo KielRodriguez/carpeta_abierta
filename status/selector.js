@@ -68,8 +68,7 @@
   function activeButton(buttonEl) {
     $("#status-activators")
     .find(".btn-primary")
-    .removeClass("btn-primary")
-    .addClass("btn-default");
+    .removeClass("btn-primary");
     buttonEl.addClass("btn-primary");
   }
 })();

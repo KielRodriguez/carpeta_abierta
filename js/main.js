@@ -7,6 +7,9 @@
 (function() {
   'use strict';
 
+  // Recibidor de archivos CSV
+  require('../recibidor/selector.js');
+
   // Módulo de calendario
   //require('../calendar/selector.js');
 
