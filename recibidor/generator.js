@@ -13,6 +13,9 @@
       var jsonResult = [];
       var datas = file.split('\n');
 
+      datas.shift();
+      datas.reverse();
+
       for (var i = 1; i <= datas.length - 1; i++) {
         var pureDatas = datas[i].split(',');
 
