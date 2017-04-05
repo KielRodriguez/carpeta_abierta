@@ -11,7 +11,7 @@
   'use strict';
 
   var Generator = require('../status/generator.js').Generator;
-  Generator.loadJsonTreemap("Delito abreviado", "Cantidad de delitos");
+  Generator.loadJsonTreemap("crime", "Cantidad de delitos");
 
   var $crime = $('#status-crime');
   var $criminalProcess = $('#status-criminal-process');
@@ -24,37 +24,37 @@
   $crime.on('click', function() {
     activeButton($crime);
     clearGrapich();
-    Generator.loadJsonTreemap("Delito abreviado", "Cantidad de delitos");
+    Generator.loadJsonTreemap("crime", "Cantidad de delitos");
   });
 
   $criminalProcess.on('click', function() {
     activeButton($criminalProcess);
     clearGrapich();
-    Generator.loadJsonTreemap("Etapa del proceso penal", "Cantidad de etapas");
+    Generator.loadJsonTreemap("status_process", "Cantidad de etapas");
   });
 
   $adminUnit.on('click', function() {
     activeButton($adminUnit);
     clearGrapich();
-    Generator.loadJsonTreemap("Unidad Administrativa", "Cantidad de unidades");
+    Generator.loadJsonTreemap("admin_unit", "Cantidad de unidades");
   });
 
   $mp.on('click', function() {
     activeButton($mp);
     clearGrapich();
-    Generator.loadJsonTreemap("Agencia del Ministerio Público", "Cantidad de agencias");
+    Generator.loadJsonTreemap("mp", "Cantidad de agencias");
   });
 
   $state.on('click', function() {
     activeButton($state);
     clearGrapich();
-    Generator.loadJsonTreemap("Entidad", "Cantidad de entidades");
+    Generator.loadJsonTreemap("state", "Cantidad de entidades");
   });
 
   $judgment.on('click', function() {
     activeButton($judgment);
     clearGrapich();
-    Generator.loadJsonTreemap("Sentencia absolutoria", "Cantidad de sentencias");
+    Generator.loadJsonTreemap("guilty_verdict", "Cantidad de sentencias");
   });
 
   function clearGrapich() {
