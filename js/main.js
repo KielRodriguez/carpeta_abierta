@@ -11,7 +11,7 @@
   require('../recibidor/selector.js');
 
   // Módulo de calendario
-  //require('../calendar/selector.js');
+  require('../calendar/selector.js');
 
   // Módulo de status
   require('../status/selector.js');

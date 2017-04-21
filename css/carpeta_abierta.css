@@ -94,9 +94,32 @@ body {
 ** -------------------------------
 */
 
-#calendar-viz {
-  height: 600px;
-}
+/*#calendar-viz {
+  height: 900px;
+}*/
+.calendar .month-container { height: 300px; }
+
+.calendar table { color: #000; }
+
+.calendar table td.day.old,
+.calendar table td.day.new { color: #ccc; }
+
+.calendar table td.day.new { padding: 5px 10px; }
+
+.calendar table td.day .day-content.t-1-15 { background-color: rgb(186, 212, 163); }
+.calendar table td.day .day-content.t-1-15:hover { background-color: rgb(153, 192, 119); }
+
+.calendar table td.day .day-content.t-16-30 { background-color: rgb(237, 210, 104); }
+.calendar table td.day .day-content.t-16-30:hover { background-color: rgb(221, 191, 77); }
+
+.calendar table td.day .day-content.t-31-60 { background-color: rgb(235, 173, 105); }
+.calendar table td.day .day-content.t-31-60:hover { background-color: rgb(209, 138, 61); }
+
+.calendar table td.day .day-content.t-61-140 { background-color: rgb(226, 137, 59); }
+.calendar table td.day .day-content.t-61-140:hover { background-color: rgb(195, 108, 32);; }
+
+.calendar table td.day .day-content.t-141 { background-color: rgb(209, 109, 101); }
+.calendar table td.day .day-content.t-141:hover { background-color: rgb(177, 66, 58);; }
 
 /*
 ** Sección de estatus de carpeta
@@ -163,3 +186,7 @@ body {
 .select-file { margin-bottom: 50px; }
 button.create { margin-top: 36px; }
 span.selection { height: 34px; }
+
+option {
+  max-width: 350px;
+}

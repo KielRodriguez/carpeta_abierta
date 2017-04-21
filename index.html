@@ -13,6 +13,7 @@
   <link rel="import" href="bower_components/dgm-footer/dgm-footer.html">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-year-calendar/css/bootstrap-year-calendar.css">
   <link rel='stylesheet' href='css/main.css' />
   <link rel='stylesheet' href='css/carpeta_abierta.css' />
 </head>
@@ -74,37 +75,27 @@
                 <p><strong>Indicadores</strong></p>
                 <select id="calendar-changes" class="form-control">
                   <option value="total">Total de cambios</option>
-                  <option value="one">Sólo un cambio</option>
-                  <option value="two">Dos cambios</option>
+                  <option value="one">Nuevas carpetas</option>
+                  <option value="two">Cambios en las carpetas</option>
+                  <option value="three">Carpetas que cambiaron a etapa intermedia</option>
+                  <option value="four">Carpetas que cambiaron a juicio</option>
                 </select>
               </div>
               <div class="col-md-3">
                 <p><strong>Filtros</strong></p>
                 <select id="calendar-crime" class="form-control">
-                  <option value="default">Tipo de robo</option>
-                  <option value="total">Robo</option>
-                  <option value="one">Portación de armas</option>
-                  <option value="two">Materia de narcóticos</option>
-                  <option value="three">Portación de armas exclusivo</option>
-                  <option value="four">Delito en materia electoral</option>
+                  <option value="default">Tipo de delito</option>
                 </select>
                 <select id="calendar-agency" class="form-control">
-                  <option value="total">Agencia del ministerio público</option>
-                  <option value="one">Otra agencia</option>
-                  <option value="two">Una agencia más</option>
+                  <option value="default">Agencia del ministerio público</option>
                 </select>
                 <select id="calendar-unity" class="form-control">
-                  <option value="total">Unidad administrativa</option>
-                  <option value="one">Otra unidad</option>
-                  <option value="two">Una unidad más</option>
+                  <option value="default">Unidad administrativa</option>
                 </select>
               </div>
               <div class="col-md-3">
                 <p><strong>Año</strong></p>
-                <select id="calendar-indicators" class="form-control">
-                  <option value="total">2017</option>
-                  <option value="one">2016</option>
-                  <option value="two">2015</option>
+                <select id="calendar-years" class="form-control">
                 </select>
               </div>
               <div class="col-md-3">
@@ -130,7 +121,7 @@
       </div>
       <div class="row">
         <div id="calendar-viz" class="col-md-12">
-          <p>Calendario va aquí</p>
+          <!-- Visualizador de calendario -->
         </div>
       </div>
     </div>
@@ -155,28 +146,6 @@
             <button id="status-state" class="btn">Entidad</button>
             <button id="status-judgment" class="btn">Sentencia</button>
           </div>
-          <!--<div class="header-section header-status well">
-            <div id="status-activators" class="row">
-              <div class="col-md-2">
-                <button id="status-crime" class="btn btn-block btn-primary">Delito</button>
-              </div>
-              <div class="col-md-2">
-                <button id="status-criminal-process" class="btn btn-block btn-default">Proceso penal</button>
-              </div>
-              <div class="col-md-2">
-                <button id="status-admin-unit" class="btn btn-block btn-default">Unidad administrativa</button>
-              </div>
-              <div class="col-md-2">
-                <button id="status-mp" class="btn btn-block btn-default">Ministerio público</button>
-              </div>
-              <div class="col-md-2">
-                <button id="status-state" class="btn btn-block btn-default">Entidad</button>
-              </div>
-              <div class="col-md-2">
-                <button id="status-judgment" class="btn btn-block btn-default">Sentencia</button>
-              </div>
-            </div>
-          </div>-->
         </div>
       </div>
       <div class="row">
@@ -320,6 +289,7 @@
   <script src="bower_components/d3plus/d3plus.full.min.js"></script>
   <!-- BOOTSTRAP -->
   <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap-year-calendar/js/bootstrap-year-calendar.js"></script>
   <script type="text/javascript" src="js/bundle.min.js"></script>
   
 </body>

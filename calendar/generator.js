@@ -9,6 +9,9 @@
 (function() {
   'use strict';
 
-  var Selector = require('../calendar/selector.js').Selector;
-  Selector.watching();
+  exports.Generator = {
+    watching: function() {
+      //
+    }
+  };
 })();
