@@ -12,19 +12,14 @@
   exports.Generator = {
     loadJsonTreemap: function(selected, title) {
       var jsonTreemap = [];
+      var jsonDatas = require('../datas/carpa.json');
 
       //Carga json Treemap
-      $.ajax({
-        url: "../datas/carpa.json",
-        async: false,
-        success: function(data) {
-          data.forEach(function(el) {
-            jsonTreemap.push({
-              nivel1: el[selected],
-              valor: 1
-            });
-          });
-        }
+      jsonDatas.forEach(function(el) {
+        jsonTreemap.push({
+          nivel1: el[selected],
+          valor: 1
+        });
       });
 
       drawTreemap(title);
@@ -41,7 +36,7 @@
         .type("tree_map") //visualization type
         .size("valor") //sizing of blocks
         .color({
-          "heatmap": [ "#34dab3" , "#00cc99", "#158a8c" ],
+          "heatmap": [ "#d16d65" , "#e2893b", "#ebad69", "#edd268", "#bad4a3" ],
           "value": "valor"
         })
         .font({ "family": "'Open Sans', Helvetica, Arial, sans-serif", "size": 14, "weight": 500 })
