@@ -13,7 +13,9 @@
       var jsonResult = [];
       var datas = file.split('\n');
 
-      datas.shift();
+      // En vez de iniciar con: 2017 - 2014
+      // revierte a: 2014 - 2017
+      // Para reemplazar datos anteriores
       datas.reverse();
 
       for (var i = 1; i <= datas.length - 1; i++) {
