@@ -28,6 +28,7 @@
 
   // Obtención de valores de acuerdo al json de datos,
   // los datos obtenidos son puestos en los selectores
+  jsonDatas.reverse();
   jsonDatas.forEach(function(val, ind) {
     if (crimes.indexOf(val.crime) < 0) {
       crimes.push(val.crime);
@@ -57,7 +58,7 @@
     }
   });
 
-  $('#calendar-years option').on('click', function() {
+  $('#calendar-years').on('change', function() {
     $calendar.calendar({
       startYear: parseInt(this.value),
       calendarDatas: calendarDatas
