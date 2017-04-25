@@ -101,6 +101,8 @@ body {
 
 .calendar table { color: #000; }
 
+.calendar table thead tr .day-header { height: 35px; }
+
 .calendar table td.day.old,
 .calendar table td.day.new { color: #ccc; }
 

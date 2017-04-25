@@ -384,7 +384,10 @@
 				$('.pops').css({top: e.pageY -28, left: e.pageX + 30});
 			});
 
-			$('.day-content').mouseleave(function() {
+			$('.month').mouseleave(function() {
+				$('.pops').remove();
+			});
+			$('.month thead, .month .old, .month .new').mouseenter(function() {
 				$('.pops').remove();
 			});
 		},
