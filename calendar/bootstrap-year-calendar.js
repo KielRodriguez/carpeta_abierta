@@ -80,6 +80,7 @@
 			
 			//this._renderHeader();
 			this._renderBody();
+			this._renderPops();
 			this._renderDataSource();
 			
 			this._applyEvents();
@@ -281,24 +282,39 @@
 							cellContent.addClass('day-content');
 							cellContent.text(currentDate.getDate());
 
+							// Se coloca la fecha y se limpian los demás valores
+							cellContent.attr('data-date',
+								currentDate.getDate() + '/' +
+								(currentDate.getMonth() + 1) + '/' +
+								currentDate.getFullYear()
+							);
+							cellContent.attr('data-totals', 0);
+
+							// Inicializador de contador de cambios
 							var totalChanges = 0;
 
+							// Barrido del json completo de datos
 							this.options.calendarDatas.forEach(function(val, ind) {
 								if(currentDate.getTime() === val.dateChanges.getTime()) {
 									totalChanges += val.totalChanges;
 
 									if (totalChanges <= 15) {
+										cellContent.attr('data-totals', totalChanges);
 										cellContent.addClass('t-1-15 ');
 									} else if (totalChanges <= 30) {
+										cellContent.attr('data-totals', totalChanges);
 										cellContent.removeClass('t-1-15');
 										cellContent.addClass('t-16-30');
 									} else if (totalChanges <= 60) {
+										cellContent.attr('data-totals', totalChanges);
 										cellContent.removeClass('t-16-30');
 										cellContent.addClass('t-31-60');
 									} else if (totalChanges <= 140) {
+										cellContent.attr('data-totals', totalChanges);
 										cellContent.removeClass('t-31-60');
 										cellContent.addClass('t-61-140');
 									} else if (totalChanges > 140) {
+										cellContent.attr('data-totals', totalChanges);
 										cellContent.removeClass('t-61-140');
 										cellContent.addClass('t-141');
 									}
@@ -329,6 +345,50 @@
 			
 			this.element.append(monthsDiv);
 		},
+
+		// Pops
+		// Muestra un tooltip configurado
+		// (al estilo popup de Bootstrap)
+		_renderPops: function() {
+			$('.day-content').mousemove(function(e) {
+				$('.pops').remove();
+
+				$('body').append('<div class="pops">' +
+				  '<span class="arrow"></span>' +
+					'<p class="line-data">' +
+						'<span class="title">Fecha</span>' +
+						'<span class="count">'+ $(this).attr('data-date') +'</span>' +
+					'</p>' +
+					'<p class="line-data">' +
+						'<span class="title">Total de cambios</span>' +
+						'<span class="count">'+ $(this).attr('data-totals') +'</span>' +
+					'</p>' +
+					'<p class="line-data">' +
+						'<span class="title">Nuevas carpetas</span>' +
+						'<span class="count">'+ 0 +'</span>' +
+					'</p>' +
+					'<p class="line-data">' +
+						'<span class="title">Cambios en las carpetas</span>' +
+						'<span class="count">'+ 0 +'</span>' +
+					'</p>' +
+					'<p class="line-data">' +
+						'<span class="title">Carpetas que cambiaron a etapa intermedia</span>' +
+						'<span class="count">'+ 0 +'</span>' +
+					'</p>' +
+					'<p class="line-data">' +
+						'<span class="title">Carpetas que cambiaron a juicio</span>' +
+						'<span class="count">'+ 0 +'</span>' +
+					'</p>' +
+				'</div>');
+
+				$('.pops').css({top: e.pageY -28, left: e.pageX + 30});
+			});
+
+			$('.day-content').mouseleave(function() {
+				$('.pops').remove();
+			});
+		},
+
 		_renderDataSource: function() {
 			var _this = this;
 			if(this.options.dataSource != null && this.options.dataSource.length > 0) {
