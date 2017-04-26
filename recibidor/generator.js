@@ -16,6 +16,7 @@
       // En vez de iniciar con: 2017 - 2014
       // revierte a: 2014 - 2017
       // Para reemplazar datos anteriores
+      datas.shift();
       datas.reverse();
 
       for (var i = 1; i <= datas.length - 1; i++) {
@@ -47,12 +48,12 @@
                 "id": pureDatas[1],
                 "date": pureDatas[0].substring(0, 10).trim(),
                 "date_start": pureDatas[14],
-                "status_process": pureDatas[2],
-                "crime": pureDatas[3],
-                "admin_unit": pureDatas[5],
-                "mp": pureDatas[6],
-                "absol_verdict": pureDatas[31],
-                "guilty_verdict": pureDatas[35],
+                "status_process": pureDatas[2].replace(/"/g,""),
+                "crime": pureDatas[3].replace(/"/g,""),
+                "admin_unit": pureDatas[5].replace(/"/g,""),
+                "mp": pureDatas[6].replace(/"/g,""),
+                "absol_verdict": pureDatas[31].replace(/"/g,""),
+                "guilty_verdict": pureDatas[35].replace(/"/g,""),
                 "state": pureDatas[11],
                 "changes": jsonResult[ind].changes + 1,
                 "value": 1
@@ -67,12 +68,12 @@
               "id": pureDatas[1],
               "date": pureDatas[0].substring(0, 10).trim(),
               "date_start": pureDatas[14],
-              "status_process": pureDatas[2],
-              "crime": pureDatas[3],
-              "admin_unit": pureDatas[5],
-              "mp": pureDatas[6],
-              "absol_verdict": pureDatas[31],
-              "guilty_verdict": pureDatas[35],
+              "status_process": pureDatas[2].replace(/"/g,""),
+              "crime": pureDatas[3].replace(/"/g,""),
+              "admin_unit": pureDatas[5].replace(/"/g,""),
+              "mp": pureDatas[6].replace(/"/g,""),
+              "absol_verdict": pureDatas[31].replace(/"/g,""),
+              "guilty_verdict": pureDatas[35].replace(/"/g,""),
               "state": pureDatas[11],
               "changes": 0,
               "value": 1
