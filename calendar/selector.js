@@ -50,23 +50,37 @@
       $years.append('<option value="'+ val.date.substr(6,4) +'">'+ val.date.substr(6,4) +'</option>');
     }
 
-    if (val.changes > 0) {
-      calendarDatas.push({
-        dateChanges: new Date("" + val.date.substr(6,4) + "," + val.date.substr(3,2) + "," + val.date.substr(0,2)),
-        totalChanges: val.changes
-      });
-    }
-  });
-
-  $('#calendar-years').on('change', function() {
-    $calendar.calendar({
-      startYear: parseInt(this.value),
-      calendarDatas: calendarDatas
+    // Ordena el json como es necesario para el calendario
+    calendarDatas.push({
+      id: val.id,
+      dateChanges: new Date("" + val.date.substr(6,4) + "," + val.date.substr(3,2) + "," + val.date.substr(0,2)),
+      totalChanges: val.changes,
+      status: val.status_process
     });
   });
 
+  // Selector de años
+  $years.on('change', function() {
+    $calendar.calendar({
+      startYear: parseInt($years.val()),
+      calendarDatas: calendarDatas,
+      indicator: $changes.val()
+    });
+  });
+
+  // Selector de 
+  $changes.on('change', function() {
+    $calendar.calendar({
+      startYear: parseInt($years.val()),
+      calendarDatas: calendarDatas,
+      indicator: $changes.val()
+    });
+  });
+
+  // Muestra la gráfica inicial de calendario
   $calendar.calendar({
     startYear: years[0],
-    calendarDatas: calendarDatas
+    calendarDatas: calendarDatas,
+    indicator: $changes.val()
   });
 })();

@@ -51,7 +51,8 @@
 				contextMenuItems: opt.contextMenuItems instanceof Array ? opt.contextMenuItems : [],
 				customDayRenderer : $.isFunction(opt.customDayRenderer) ? opt.customDayRenderer : null,
 				customDataSourceRenderer : $.isFunction(opt.customDataSourceRenderer) ? opt.customDataSourceRenderer : null,
-				calendarDatas: opt.calendarDatas != null ? opt.calendarDatas : []
+				calendarDatas: opt.calendarDatas != null ? opt.calendarDatas : [],
+				indicator: opt.indicator != null ? opt.indicator : "totals"
 			};
 			
 			this._initializeDatasourceColors();
@@ -289,34 +290,50 @@
 								currentDate.getFullYear()
 							);
 							cellContent.attr('data-totals', 0);
+							cellContent.attr('data-new-folders', 0);
+							cellContent.attr('data-complementary', 0);
+							cellContent.attr('data-intermediate', 0);
+							cellContent.attr('data-judgment', 0);
 
-							// Inicializador de contador de cambios
+							// Inicializadores de cambios
+							var self = this;
 							var totalChanges = 0;
+							var totalNewFolders = 0;
+							var totalComplementary = 0;
+							var totalIntermediate = 0;
+							var totalJudgment = 0;
+							var newFolds = [];
 
 							// Barrido del json completo de datos
 							this.options.calendarDatas.forEach(function(val, ind) {
 								if(currentDate.getTime() === val.dateChanges.getTime()) {
-									totalChanges += val.totalChanges;
+									// Agrega un cambio más (sin importar tipo)
+									cellContent.attr('data-totals', totalChanges += val.totalChanges);
 
-									if (totalChanges <= 15) {
-										cellContent.attr('data-totals', totalChanges);
-										cellContent.addClass('t-1-15 ');
-									} else if (totalChanges <= 30) {
-										cellContent.attr('data-totals', totalChanges);
-										cellContent.removeClass('t-1-15');
-										cellContent.addClass('t-16-30');
-									} else if (totalChanges <= 60) {
-										cellContent.attr('data-totals', totalChanges);
-										cellContent.removeClass('t-16-30');
-										cellContent.addClass('t-31-60');
-									} else if (totalChanges <= 140) {
-										cellContent.attr('data-totals', totalChanges);
-										cellContent.removeClass('t-31-60');
-										cellContent.addClass('t-61-140');
-									} else if (totalChanges > 140) {
-										cellContent.attr('data-totals', totalChanges);
-										cellContent.removeClass('t-61-140');
-										cellContent.addClass('t-141');
+									// Agrega una carpeta nueva más
+									if(newFolds.indexOf(val.id) < 0) {
+										cellContent.attr('data-new-folders', totalNewFolders++);
+									}
+
+									// Agrega un cambio más para cambios en carpetas
+									if(val.status.indexOf('COMPLEMENTARIA') > -1) {
+										cellContent.attr('data-complementary', totalComplementary++);
+									} else if(val.status.indexOf('INTERMEDIA') > -1) {
+										cellContent.attr('data-intermediate', totalIntermediate++);
+									} else if(val.status.indexOf('JUICIO') > -1) {
+										cellContent.attr('data-judgment', totalJudgment++);
+									}
+
+									if(self.options.indicator === "totals") {
+										self.setValueColors(cellContent, totalChanges);
+									} else if(self.options.indicator === "new-folders") {
+										self.setValueColors(cellContent, totalNewFolders);
+									} else if(self.options.indicator === "complementary") {
+										self.setValueColors(cellContent, totalComplementary);
+									} else if(self.options.indicator === "intermediate") {
+										self.setValueColors(cellContent, totalIntermediate);
+									} else if(self.options.indicator === "judgment") {
+										self.setValueColors(cellContent, totalJudgment);
 									}
 								}
 							});
@@ -346,6 +363,24 @@
 			this.element.append(monthsDiv);
 		},
 
+		setValueColors: function(el, changes) {
+			if (changes > 1 && changes <= 15) {
+				el.addClass('t-1-15 ');
+			} else if (changes > 15 && changes <= 30) {
+				el.removeClass('t-1-15');
+				el.addClass('t-16-30');
+			} else if (changes > 30 && changes <= 60) {
+				el.removeClass('t-16-30');
+				el.addClass('t-31-60');
+			} else if (changes > 60 && changes <= 140) {
+				el.removeClass('t-31-60');
+				el.addClass('t-61-140');
+			} else if (changes > 140) {
+				el.removeClass('t-61-140');
+				el.addClass('t-141');
+			}
+		},
+
 		// Pops
 		// Muestra un tooltip configurado
 		// (al estilo popup de Bootstrap)
@@ -365,19 +400,19 @@
 					'</p>' +
 					'<p class="line-data">' +
 						'<span class="title">Nuevas carpetas</span>' +
-						'<span class="count">'+ 0 +'</span>' +
+						'<span class="count">'+ $(this).attr('data-new-folders') +'</span>' +
 					'</p>' +
 					'<p class="line-data">' +
-						'<span class="title">Cambios en las carpetas</span>' +
-						'<span class="count">'+ 0 +'</span>' +
+						'<span class="title">Carpetas que cambiaron a investigación complementaria</span>' +
+						'<span class="count">'+ $(this).attr('data-complementary') +'</span>' +
 					'</p>' +
 					'<p class="line-data">' +
 						'<span class="title">Carpetas que cambiaron a etapa intermedia</span>' +
-						'<span class="count">'+ 0 +'</span>' +
+						'<span class="count">'+ $(this).attr('data-intermediate') +'</span>' +
 					'</p>' +
 					'<p class="line-data">' +
 						'<span class="title">Carpetas que cambiaron a juicio</span>' +
-						'<span class="count">'+ 0 +'</span>' +
+						'<span class="count">'+ $(this).attr('data-judgment') +'</span>' +
 					'</p>' +
 				'</div>');
 
