@@ -77,6 +77,9 @@
       filters: filters,
       filterSelected: filterSelected
     });
+
+    // Cambia el texto del indicador (el que tiene los colores)
+    $('#indicator-change > strong').text($('#calendar-changes option:selected').text());
   });
 
   // Selector y filtrado con tipos de delito
@@ -115,6 +118,9 @@
     filters: filters,
     filterSelected: filterSelected
   });
+
+  // Cambia el texto del indicador (el que tiene los colores)
+  $('#indicator-change > strong').text($('#calendar-changes option:selected').text());
 
   function totalFilters() {
     filters = [];
