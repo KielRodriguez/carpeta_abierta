@@ -52,7 +52,9 @@
 				customDayRenderer : $.isFunction(opt.customDayRenderer) ? opt.customDayRenderer : null,
 				customDataSourceRenderer : $.isFunction(opt.customDataSourceRenderer) ? opt.customDataSourceRenderer : null,
 				calendarDatas: opt.calendarDatas != null ? opt.calendarDatas : [],
-				indicator: opt.indicator != null ? opt.indicator : "totals"
+				indicator: opt.indicator != null ? opt.indicator : "totals",
+				filters: opt.filters != null ? opt.filters : [],
+				filterSelected: opt.filterSelected != null ? opt.filterSelected : []
 			};
 			
 			this._initializeDatasourceColors();
@@ -297,33 +299,84 @@
 
 							// Inicializadores de cambios
 							var self = this;
+							// Indicadores
 							var totalChanges = 0;
 							var totalNewFolders = 0;
 							var totalComplementary = 0;
 							var totalIntermediate = 0;
 							var totalJudgment = 0;
+							// Array para observar carpetas nuevas
 							var newFolds = [];
 
 							// Barrido del json completo de datos
 							this.options.calendarDatas.forEach(function(val, ind) {
 								if(currentDate.getTime() === val.dateChanges.getTime()) {
-									// Agrega un cambio más (sin importar tipo)
-									cellContent.attr('data-totals', totalChanges += val.totalChanges);
+									switch(self.options.filterSelected.length) {
+										case 3:
+											if (self.options.filterSelected[0] === val.crime &&
+												self.options.filterSelected[1] === val.mp &&
+												self.options.filterSelected[2] === val.admin_unit
+											) {
+												adding();
+											}
+											break;
+										case 2:
+											if (self.options.filterSelected[0] === val[self.options.filters[0]] &&
+												self.options.filterSelected[1] === val[self.options.filters[1]]
+											) {
+												adding();
+											}
+											break;
+										case 1:
+											if (self.options.filterSelected[0] === val[self.options.filters[0]]) {
+												adding();
+											}
+											break;
+										default:
+											adding();
+									}
+									// if (self.options.filterSelected.length == 3) {
+									// 	if (self.options.filterSelected[0] === val.crime &&
+									// 		self.options.filterSelected[1] === val.mp &&
+									// 		self.options.filterSelected[2] === val.admin_unit
+									// 	) {
+									// 		adding();
+									// 	}
+									// } else if (self.options.filterSelected.length == 2) {
+									// 	if (self.options.filterSelected[0] === val[self.options.filters[0]] &&
+									// 		self.options.filterSelected[1] === val[self.options.filters[1]]
+									// 	) {
+									// 		adding();
+									// 	}
+									// } else if (self.options.filterSelected.length == 1) {
+									// 	if (self.options.filterSelected[0] === val[self.options.filters[0]]) {
+									// 		console.log("compare: " + self.options.filterSelected[0] + "  -  "+ val[self.options.filters[0]]);
+									// 		adding();
+									// 	}
+									// } else {
+									// 	adding();
+									// }
 
-									// Agrega una carpeta nueva más
-									if(newFolds.indexOf(val.id) < 0) {
-										cellContent.attr('data-new-folders', totalNewFolders++);
+									function adding() {
+										// Agrega un cambio más (sin importar tipo)
+										cellContent.attr('data-totals', totalChanges += val.totalChanges);
+
+										// Agrega una carpeta nueva más
+										if(newFolds.indexOf(val.id) < 0) {
+											cellContent.attr('data-new-folders', totalNewFolders++);
+										}
+
+										// Agrega un cambio más para cambios en carpetas
+										if(val.status.indexOf('COMPLEMENTARIA') > -1) {
+											cellContent.attr('data-complementary', totalComplementary++);
+										} else if(val.status.indexOf('INTERMEDIA') > -1) {
+											cellContent.attr('data-intermediate', totalIntermediate++);
+										} else if(val.status.indexOf('JUICIO') > -1) {
+											cellContent.attr('data-judgment', totalJudgment++);
+										}
 									}
 
-									// Agrega un cambio más para cambios en carpetas
-									if(val.status.indexOf('COMPLEMENTARIA') > -1) {
-										cellContent.attr('data-complementary', totalComplementary++);
-									} else if(val.status.indexOf('INTERMEDIA') > -1) {
-										cellContent.attr('data-intermediate', totalIntermediate++);
-									} else if(val.status.indexOf('JUICIO') > -1) {
-										cellContent.attr('data-judgment', totalJudgment++);
-									}
-
+									// Filtrado sólo por indicadores
 									if(self.options.indicator === "totals") {
 										self.setValueColors(cellContent, totalChanges);
 									} else if(self.options.indicator === "new-folders") {
