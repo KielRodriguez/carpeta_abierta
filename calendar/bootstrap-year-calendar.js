@@ -417,7 +417,7 @@
 		},
 
 		setValueColors: function(el, changes) {
-			if (changes > 1 && changes <= 15) {
+			if (changes > 0 && changes <= 15) {
 				el.addClass('t-1-15 ');
 			} else if (changes > 15 && changes <= 30) {
 				el.removeClass('t-1-15');
