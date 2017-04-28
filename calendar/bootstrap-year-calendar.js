@@ -335,27 +335,6 @@
 										default:
 											adding();
 									}
-									// if (self.options.filterSelected.length == 3) {
-									// 	if (self.options.filterSelected[0] === val.crime &&
-									// 		self.options.filterSelected[1] === val.mp &&
-									// 		self.options.filterSelected[2] === val.admin_unit
-									// 	) {
-									// 		adding();
-									// 	}
-									// } else if (self.options.filterSelected.length == 2) {
-									// 	if (self.options.filterSelected[0] === val[self.options.filters[0]] &&
-									// 		self.options.filterSelected[1] === val[self.options.filters[1]]
-									// 	) {
-									// 		adding();
-									// 	}
-									// } else if (self.options.filterSelected.length == 1) {
-									// 	if (self.options.filterSelected[0] === val[self.options.filters[0]]) {
-									// 		console.log("compare: " + self.options.filterSelected[0] + "  -  "+ val[self.options.filters[0]]);
-									// 		adding();
-									// 	}
-									// } else {
-									// 	adding();
-									// }
 
 									function adding() {
 										// Agrega un cambio más (sin importar tipo)
@@ -443,33 +422,35 @@
 
 				$('body').append('<div class="pops">' +
 				  '<span class="arrow"></span>' +
-					'<p class="line-data">' +
+					'<p class="line-data date">' +
 						'<span class="title">Fecha</span>' +
 						'<span class="count">'+ $(this).attr('data-date') +'</span>' +
 					'</p>' +
-					'<p class="line-data">' +
+					'<p class="line-data totals">' +
 						'<span class="title">Total de cambios</span>' +
 						'<span class="count">'+ $(this).attr('data-totals') +'</span>' +
 					'</p>' +
-					'<p class="line-data">' +
+					'<p class="line-data new-folders">' +
 						'<span class="title">Nuevas carpetas</span>' +
 						'<span class="count">'+ $(this).attr('data-new-folders') +'</span>' +
 					'</p>' +
-					'<p class="line-data">' +
+					'<p class="line-data complementary">' +
 						'<span class="title">Carpetas que cambiaron a investigación complementaria</span>' +
 						'<span class="count">'+ $(this).attr('data-complementary') +'</span>' +
 					'</p>' +
-					'<p class="line-data">' +
+					'<p class="line-data intermediate">' +
 						'<span class="title">Carpetas que cambiaron a etapa intermedia</span>' +
 						'<span class="count">'+ $(this).attr('data-intermediate') +'</span>' +
 					'</p>' +
-					'<p class="line-data">' +
+					'<p class="line-data judgment">' +
 						'<span class="title">Carpetas que cambiaron a juicio</span>' +
 						'<span class="count">'+ $(this).attr('data-judgment') +'</span>' +
 					'</p>' +
 				'</div>');
 
 				$('.pops').css({top: e.pageY -28, left: e.pageX + 30});
+
+				$('.line-data.' + $('#calendar-changes option:selected').val()).addClass('indicator-selected');
 			});
 
 			$('.month').mouseleave(function() {
