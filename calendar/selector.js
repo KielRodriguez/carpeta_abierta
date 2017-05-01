@@ -10,8 +10,6 @@
   'use strict';
 
   var jsonDatas = require('../datas/carpa.json');
-  var Generator = require('../calendar/generator.js').Generator;
-  Generator.watching();
 
   var $changes = $('#calendar-changes');
   var $crime = $('#calendar-crime');
@@ -58,7 +56,7 @@
     calendarDatas.push({
       id: val.id,
       dateChanges: new Date("" + val.date.substr(6,4) + "," + val.date.substr(3,2) + "," + val.date.substr(0,2)),
-      totalChanges: val.changes,
+      changesFolder: val.changes,
       status: val.status_process,
       crime: val.crime,
       mp: val.mp,

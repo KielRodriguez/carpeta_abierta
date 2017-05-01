@@ -292,6 +292,7 @@
 								currentDate.getFullYear()
 							);
 							cellContent.attr('data-totals', 0);
+							cellContent.attr('data-changes-folder', 0);
 							cellContent.attr('data-new-folders', 0);
 							cellContent.attr('data-complementary', 0);
 							cellContent.attr('data-intermediate', 0);
@@ -301,6 +302,7 @@
 							var self = this;
 							// Indicadores
 							var totalChanges = 0;
+							var changesFolder = 0;
 							var totalNewFolders = 0;
 							var totalComplementary = 0;
 							var totalIntermediate = 0;
@@ -338,26 +340,32 @@
 
 									function adding() {
 										// Agrega un cambio más (sin importar tipo)
-										cellContent.attr('data-totals', totalChanges += val.totalChanges);
+										cellContent.attr('data-changes-folder', changesFolder += val.changesFolder);
 
 										// Agrega una carpeta nueva más
 										if(newFolds.indexOf(val.id) < 0) {
-											cellContent.attr('data-new-folders', totalNewFolders++);
+											cellContent.attr('data-new-folders', ++totalNewFolders);
 										}
+
+										// Contador del total de cambios (nuevas carpetas + cambios a carpetas)
+										totalChanges = changesFolder + totalNewFolders;
+										cellContent.attr('data-totals', totalChanges);
 
 										// Agrega un cambio más para cambios en carpetas
 										if(val.status.indexOf('COMPLEMENTARIA') > -1) {
-											cellContent.attr('data-complementary', totalComplementary++);
+											cellContent.attr('data-complementary', ++totalComplementary);
 										} else if(val.status.indexOf('INTERMEDIA') > -1) {
-											cellContent.attr('data-intermediate', totalIntermediate++);
+											cellContent.attr('data-intermediate', ++totalIntermediate);
 										} else if(val.status.indexOf('JUICIO') > -1) {
-											cellContent.attr('data-judgment', totalJudgment++);
+											cellContent.attr('data-judgment', ++totalJudgment);
 										}
 									}
 
 									// Filtrado sólo por indicadores
-									if(self.options.indicator === "totals") {
+									if (self.options.indicator === "totals") {
 										self.setValueColors(cellContent, totalChanges);
+									} else if(self.options.indicator === "changes-folder") {
+										self.setValueColors(cellContent, changesFolder);
 									} else if(self.options.indicator === "new-folders") {
 										self.setValueColors(cellContent, totalNewFolders);
 									} else if(self.options.indicator === "complementary") {
@@ -425,10 +433,15 @@
 					'<p class="line-data date">' +
 						'<span class="title">Fecha</span>' +
 						'<span class="count">'+ $(this).attr('data-date') +'</span>' +
+						'<span class="line"></span>' +
 					'</p>' +
 					'<p class="line-data totals">' +
 						'<span class="title">Total de cambios</span>' +
 						'<span class="count">'+ $(this).attr('data-totals') +'</span>' +
+					'</p>' +
+					'<p class="line-data changes-folder">' +
+						'<span class="title">Cambios a carpetas</span>' +
+						'<span class="count">'+ $(this).attr('data-changes-folder') +'</span>' +
 					'</p>' +
 					'<p class="line-data new-folders">' +
 						'<span class="title">Nuevas carpetas</span>' +
