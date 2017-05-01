@@ -20,6 +20,12 @@
   var $state = $('#status-state');
   var $judgment = $('#status-judgment');
 
+  $(window).on('resize', function() {
+    var element = $('#status-activators').find('.btn-primary')[0].id;
+    
+    $('#' + element).trigger('click');
+  });
+
   // bind events
   $crime.on('click', function() {
     activeButton($crime);
@@ -54,7 +60,7 @@
   $judgment.on('click', function() {
     activeButton($judgment);
     clearGrapich();
-    Generator.loadJsonTreemap("guilty_verdict", "Cantidad de sentencias");
+    Generator.loadJsonTreemap("verdict", "Cantidad de sentencias");
   });
 
   function clearGrapich() {

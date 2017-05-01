@@ -31,22 +31,24 @@
         .data(jsonTreemap)
         .id({
           "value": ["nivel1"],
-          "grouping": false            // grouping set to false ungroups parent nesting
+          "grouping": false // grouping set to false ungroups parent nesting
         })
         .type("tree_map") //visualization type
         .size("valor") //sizing of blocks
         .color({
-          "heatmap": [ "#d16d65" , "#e2893b", "#ebad69", "#edd268", "#bad4a3" ],
+          "heatmap": [ "#bad4a3", "#edd268", "#ebad69", "#e2893b", "#d16d65" ],
           "value": "valor"
         })
         .font({ "family": "'Open Sans', Helvetica, Arial, sans-serif", "size": 14, "weight": 500 })
         .format({
           "text": function(text, params) {
-
             if (text === "valor") {
               return showText;
-            }
-            else {
+            } else if (text === "porcentaje") {
+              return "Porcentaje";
+            } else if (selected === "admin_unit") {
+              return text.toUpperCase();
+            } else {
               return d3plus.string.title(text, params);
             }
           },
