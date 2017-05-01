@@ -12,6 +12,7 @@
     jsonGenerator: function(file) {
       var jsonResult = [];
       var datas = file.split('\n');
+      var states = require('../datas/states.json');
 
       // En vez de iniciar con: 2017 - 2014
       // revierte a: 2014 - 2017
@@ -21,6 +22,21 @@
 
       for (var i = 1; i <= datas.length - 1; i++) {
         var pureDatas = datas[i].split(',');
+        // Seleccionador del estado por id de estado
+        var idState = pureDatas[11] - 1;
+        var state = "";
+        if (idState < 0) { state = states[0].name }
+        else if (idState === 32) { state = states[31].name }
+        else { state = states[idState].name }
+
+        // Seleccionador de veredicto
+        // Sentencia absolutoria = pureDatas[31]
+        // Sentencia condenatoria = pureDatas[35]
+        var veredict = "";
+        if (pureDatas[31] === "S" && pureDatas[35] === "N") { veredict = "Sentencia absolutoria" }
+        else if (pureDatas[31] === "N" && pureDatas[35] === "S") { veredict = "Sentencia condenatoria" }
+        else if (pureDatas[31] === "N" && pureDatas[35] === "N") { veredict = "Sin sentencia" }
+        else if (pureDatas[31] === "S" && pureDatas[35] === "S") { veredict = "Sentencia condenatoria y absolutoria" }
 
         if (jsonResult.length === 0) {
           // Agrega el primer elemento
@@ -28,13 +44,12 @@
             "id": pureDatas[1],
             "date": pureDatas[0].substring(0, 10).trim(),
             "date_start": pureDatas[14],
-            "status_process": pureDatas[2],
-            "crime": pureDatas[3],
-            "admin_unit": pureDatas[5],
-            "mp": pureDatas[6],
-            "absol_verdict": pureDatas[31],
-            "guilty_verdict": pureDatas[35],
-            "state": pureDatas[11],
+            "status_process": pureDatas[2].replace(/"/g,""),
+            "crime": pureDatas[3].replace(/"/g,""),
+            "admin_unit": pureDatas[5].replace(/"/g,""),
+            "mp": pureDatas[6].replace(/"/g,""),
+            "verdict": veredict,
+            "state": state,
             "changes": 0,
             "value": 1
           });
@@ -52,9 +67,8 @@
                 "crime": pureDatas[3].replace(/"/g,""),
                 "admin_unit": pureDatas[5].replace(/"/g,""),
                 "mp": pureDatas[6].replace(/"/g,""),
-                "absol_verdict": pureDatas[31].replace(/"/g,""),
-                "guilty_verdict": pureDatas[35].replace(/"/g,""),
-                "state": pureDatas[11],
+                "verdict": veredict,
+                "state": state,
                 "changes": jsonResult[ind].changes + 1,
                 "value": 1
               };
@@ -72,9 +86,8 @@
               "crime": pureDatas[3].replace(/"/g,""),
               "admin_unit": pureDatas[5].replace(/"/g,""),
               "mp": pureDatas[6].replace(/"/g,""),
-              "absol_verdict": pureDatas[31].replace(/"/g,""),
-              "guilty_verdict": pureDatas[35].replace(/"/g,""),
-              "state": pureDatas[11],
+              "verdict": veredict,
+              "state": state,
               "changes": 0,
               "value": 1
             });
