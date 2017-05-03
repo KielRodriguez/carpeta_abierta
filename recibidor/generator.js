@@ -61,6 +61,7 @@
             "verdict": veredict,
             "state": state,
             "changes": 0,
+            "complete_changes": [],
             "value": 1
           });
         } else {
@@ -72,21 +73,16 @@
 
           // Reemplazar elemento y contar un cambio
           // inde --> es el índice del json que contiene los datos completos
-          jsonResult[indexId] = {
-            "inde": i,
-            "id": pureDatas[1],
-            "date": pureDatas[0].substring(0, 10).trim(),
-            "date_start": pureDatas[14],
-            "status_process": pureDatas[2],
-            "crime": pureDatas[3],
-            "admin_unit": pureDatas[5],
-            "mp": pureDatas[6],
-            "verdict": veredict,
-            "state": state,
-            "changes": jsonResult[indexId].changes + 1,
-            "complete_changes": [],
-            "value": 1
-          };
+          jsonResult[indexId].inde = i;
+          jsonResult[indexId].date = pureDatas[0].substring(0, 10).trim();
+          jsonResult[indexId].date_start = pureDatas[14];
+          jsonResult[indexId].status_process = pureDatas[2];
+          jsonResult[indexId].crime = pureDatas[3];
+          jsonResult[indexId].admin_unit = pureDatas[5];
+          jsonResult[indexId].mp = pureDatas[6];
+          jsonResult[indexId].verdict = veredict;
+          jsonResult[indexId].state = state;
+          jsonResult[indexId].changes += 1;
 
           // Agregar elementos que no son iguales
           // ya que estos son cambios en la carpeta
@@ -95,6 +91,7 @@
             // ése es uno de los cambios que se deben agregar
             if (pureDatas[j] !== datas_found[j]) {
               jsonResult[indexId].complete_changes.push({
+                "date": jsonResult[indexId].date,
                 "title_text": titles[j],
                 "value": pureDatas[j]
               });
