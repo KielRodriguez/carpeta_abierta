@@ -15,4 +15,7 @@
 
   // Módulo de status
   require('../status/selector.js');
+
+  // Módulo de seguimiento de carpeta
+  require('../tracking/selector.js');
 })();

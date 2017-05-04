@@ -245,16 +245,13 @@
               <div class="col-md-5">
                 <p><strong>Carpeta</strong></p>
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="EJ. FED/PUE/PBL/00059593/2016" />
+                  <input id="tracking-id-folder" type="text" class="form-control" placeholder="EJ. FED/PUE/PBL/00059593/2016" />
                   <div class="input-group-addon searcher-insert">Buscar</div>
                 </div>
               </div>
               <div class="col-md-3">
                 <p><strong>Año</strong></p>
-                <select id="indicators" class="form-control">
-                  <option value="total">2017</option>
-                  <option value="one">2016</option>
-                  <option value="two">2015</option>
+                <select id="tracking-years" class="form-control">
                 </select>
               </div>
               <div class="col-md-4">
@@ -275,7 +272,11 @@
         </div>
       </div>
       <div id="tracking-viz" class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 first-months">
+        </div>
+        <div class="col-md-6 last-months">
+        </div>
+        <!--<div class="col-md-6">
           <div class="month-changes">
             <div class="header">
               <span class="month">Enero</span>
@@ -302,7 +303,7 @@
               <i class="glyphicon glyphicon-menu-down"></i>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
