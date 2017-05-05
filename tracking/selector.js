@@ -14,6 +14,7 @@
 
   // Elementos
   var $years = $('#tracking-years');
+  var $folderId = $('#tracking-id-folder');
 
   var years = [];
 
@@ -24,5 +25,19 @@
     }
   });
 
-  Generator.vizGenerator("", parseInt(years[0]));
+  // Genera la gráfica limpia (sin datos)
+  Generator.vizGenerator();
+
+  // Observa si el usuario selecciona un año
+  $years.on('change', function() {
+    if ($folderId.val().trim() !== "") {
+      //
+    }
+  });
+
+  $('#search-id-folder').on('click', function() {
+    if ($folderId.val().trim() !== "") {
+      Generator.searchAndPrintId( $folderId.val().trim(), parseInt($years.val()) );
+    }
+  });
 })();
