@@ -31,7 +31,7 @@
   // Observa si el usuario selecciona un año
   $years.on('change', function() {
     if ($folderId.val().trim() !== "") {
-      //
+      Generator.searchAndPrintId( $folderId.val().trim(), parseInt($years.val()) );
     }
   });
 

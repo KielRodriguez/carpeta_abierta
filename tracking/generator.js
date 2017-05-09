@@ -50,6 +50,13 @@
             var changesYear = parseInt(_val.date.substr(6,4));
             var changesMonth = parseInt(_val.date.substr(3,2) - 1);
             var changesDay = _val.date.substr(0,2);
+            var valueItem = "";
+
+            // Cambia valores de S Y N por Si o No
+            if (_val.value === "S") { valueItem = "Si"; }
+            else if (_val.value === "N") { valueItem = "No"; }
+            else { valueItem = _val.value; }
+
 
             if (changesYear === selectedYear) {
               folderYearFound = true;
@@ -59,7 +66,7 @@
                   '<div class="item-changes">' +
                     '<p class="item-date">'+ changesDay +' '+ months[changesMonth] +'</p>' +
                     '<p class="item">' +
-                      '<strong>'+ _val.title_text +':</strong> '+ _val.value +
+                      '<strong>'+ _val.title_text +':</strong> '+ valueItem +
                     '</p>' +
                   '</div>'
                 );
@@ -80,7 +87,7 @@
               } else if (differentMonths.indexOf(changesMonth) > -1 && differentDays.indexOf(changesDay) > -1) {
                 $('#tracking-viz .'+ months[changesMonth] +' .body-changes .item-changes:nth-child('+ itemNum +')').append(
                   '<p class="item">' +
-                    '<strong>'+ _val.title_text +':</strong> '+ _val.value +
+                    '<strong>'+ _val.title_text +':</strong> '+ valueItem +
                   '</p>'
                 );
                 // Si existe el mes, pero no el día
@@ -89,7 +96,7 @@
                   '<div class="item-changes">' +
                     '<p class="item-date">'+ changesDay +' '+ months[changesMonth] +'</p>' +
                     '<p class="item">' +
-                      '<strong>'+ _val.title_text +':</strong> '+ _val.value +
+                      '<strong>'+ _val.title_text +':</strong> '+ valueItem +
                     '</p>' +
                   '</div>'
                 );
