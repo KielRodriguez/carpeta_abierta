@@ -44,12 +44,61 @@
           var differentMonths = [];
           var totalChanges = 0;
           var itemNum = 1;
+
+          var changesYear = parseInt(val.date.substr(6,4));
+          var changesMonth = parseInt(val.date.substr(3,2) - 1);
+          var changesDay = val.date.substr(0,2);
+          var firstChangesYear = parseInt(val.date_start.substr(6,4));
+          var firstChangesMonth = parseInt(val.date_start.substr(3,2) - 1);
+          var firstChangesDay = val.date_start.substr(0,2);
           folderFound = true;
 
+          if (firstChangesYear === selectedYear && val.changes === 0) {
+            folderYearFound = true;
+
+            $('#tracking-viz .'+ months[firstChangesMonth] +' .body-changes').append(
+              '<div class="item-changes">' +
+                '<p class="item-date">'+ firstChangesDay +' '+ months[firstChangesMonth] +'</p>' +
+                '<p class="item">' +
+                  'Se abrió la carpeta de investigación' +
+                '</p>' +
+              '</div>'
+            );
+
+            // Suma un cambio más al mes
+            totalChanges = 1;
+            // Imprime el número de cambios por mes
+            $('#tracking-viz .'+ months[firstChangesMonth] +' .header .changes').text("1 cambio");
+            $('#tracking-viz .'+ months[firstChangesMonth] +' .header .line-changes').addClass('_1_5');
+          } else if (firstChangesYear === selectedYear && val.changes > 0) {
+            folderYearFound = true;
+
+            $('#tracking-viz .'+ months[firstChangesMonth] +' .body-changes').append(
+              '<div class="item-changes">' +
+                '<p class="item-date">'+ firstChangesDay +' '+ months[firstChangesMonth] +'</p>' +
+                '<p class="item">' +
+                  'Se abrió la carpeta de investigación' +
+                '</p>' +
+              '</div>'
+            );
+
+            // Suma un cambio más al mes
+            totalChanges++;
+            // Imprime el número de cambios por mes
+            var numChanges = totalChanges === 1 ? "1 cambio" : totalChanges + " cambios";
+            $('#tracking-viz .'+ months[firstChangesMonth] +' .header .changes').text(numChanges);
+            if (totalChanges < 5) {
+              $('#tracking-viz .'+ months[firstChangesMonth] +' .header .line-changes').addClass('_1_5');
+            } else if (totalChanges > 5) {
+              $('#tracking-viz .'+ months[firstChangesMonth] +' .header .line-changes').removeClass('_1_5');
+              $('#tracking-viz .'+ months[firstChangesMonth] +' .header .line-changes').addClass('_6');
+            }
+          }
+
           val.complete_changes.forEach(function(_val, _ind) {
-            var changesYear = parseInt(_val.date.substr(6,4));
-            var changesMonth = parseInt(_val.date.substr(3,2) - 1);
-            var changesDay = _val.date.substr(0,2);
+            changesYear = parseInt(_val.date.substr(6,4));
+            changesMonth = parseInt(_val.date.substr(3,2) - 1);
+            changesDay = _val.date.substr(0,2);
             var valueItem = "";
 
             // Cambia valores de S Y N por Si o No
@@ -71,11 +120,17 @@
                   '</div>'
                 );
 
-                // Empieza a sumar cambios para cada mes diferente
-                totalChanges = 1;
-                // Imprime el primer cambio en la carpeta
-                $('#tracking-viz .'+ months[changesMonth] +' .header .changes').text("1 cambio");
-                $('#tracking-viz .'+ months[changesMonth] +' .header .line-changes').addClass('_1_5');
+                // Suma un cambio más al mes
+                totalChanges++;
+                // Imprime el número de cambios por mes
+                var numChanges = totalChanges === 1 ? "1 cambio" : totalChanges + " cambios";
+                $('#tracking-viz .'+ months[changesMonth] +' .header .changes').text(numChanges);
+                if (totalChanges < 5) {
+                  $('#tracking-viz .'+ months[changesMonth] +' .header .line-changes').addClass('_1_5');
+                } else if (totalChanges > 5) {
+                  $('#tracking-viz .'+ months[changesMonth] +' .header .line-changes').removeClass('_1_5');
+                  $('#tracking-viz .'+ months[changesMonth] +' .header .line-changes').addClass('_6');
+                }
 
                 // borra los días para que no sean repetidos con el siguiente mes
                 differentMonths = [];
@@ -133,7 +188,7 @@
             '<span class="month">' + monthName + '</span>' +
             '<span class="changes">Sin cambios</span>' +
             '<span class="line-changes"></span>' +
-            '<i class="glyphicon glyphicon-menu-down"></i>' +
+            // '<i class="glyphicon glyphicon-menu-down"></i>' +
           '</div>' +
           '<div class="body-changes">' +
           '</div>' +

@@ -304,10 +304,13 @@ body {
   height: 4px;
   margin: 5px 0 12px;
   border-radius: 4px;
-  background-color: rgb(186, 212, 163);
+  background-color: #ccc;
 }
-.month-changes .line-changes._1_5 { background-color: rgb(237, 210, 104); }
+.month-changes .line-changes._1_5 { background-color: rgb(186, 212, 163);}
+.month-changes .line-changes._6 { background-color: rgb(237, 210, 104); }
+/*
 .month-changes .line-changes._6 { background-color: rgb(226, 137, 59); }
+*/
 .month-changes i {
   position: absolute;
   top: 10px;
