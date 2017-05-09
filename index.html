@@ -26,12 +26,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <p class="text-center">Visualizaciones</p>
             <h2>Carpeta Abierta PGR</h2>
           </div>
           <div class="col-md-10 col-md-offset-1">
             <p class="header-info">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+              Con esta herramienta podrás visualizar y explorar, en tiempo real, el avance de las carpetas de investigación del Fuero Federal.
             </p>
           </div>
         </div>
@@ -63,7 +62,7 @@
         <div class="col-md-12">
           <h1>Calendario de carpetas</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+            Visualiza los cambios que se hacen por día a las carpetas de investigación en distintos años. Puedes elegir ver el total de cambios o un tipo de cambio específico. Además, puedes filtrar por tipo de delito, agencia del ministerio público o Unidad Administrativa.
           </p>
         </div>
       </div>
@@ -133,7 +132,7 @@
         <div class="col-md-12">
           <h1>Estatus actual de las carpetas</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+            Con esta visualización puedes ver cómo se distribuyen las carpetas existentes por delito, proceso penal, Unidad Administrativa, agencia del Ministerio Público, Entidad o tipo de sentencia.
           </p>
         </div>
       </div>
@@ -161,7 +160,7 @@
         <div class="col-md-12">
           <h1>Mapa coroplético</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+            Con este mapa de calor, puedes explorar la distribución geográfica, a nivel estatal y municipal, de las carpetas de investigación.
           </p>
         </div>
       </div>
@@ -234,7 +233,7 @@
         <div class="col-md-12">
           <h1>Seguimiento de carpeta</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi libero urna, sodales a arcu a, vulputate porta ex. Morbi congue iaculis erat eu tristique. Pellentesque a viverra mi, sed gravida nulla. Donec semper felis porta ultrices tempus. Pellentesque maximus ante sed diam molestie, id sollicitudin odio placerat. Donec vitae diam rutrum, laoreet leo ut, sagittis nisi. Donec venenatis egestas egestas. 
+            Da seguimiento a una carpeta de investigación específica al ingresar el “Número de Carpeta de Investigación” asignado a ésta. Puedes cambiar el año con el filtro para ver los cambios realizados a esa carpeta en distintos momentos.
           </p>
         </div>
       </div>
@@ -298,13 +297,6 @@
                      .style("z-index", "999999999")
                      .style("visibility", "hidden")
                      .text("a simple tooltip");
-
-    var tooltip = d3.select("body")
-                    .append("div")
-                    .style("position", "absolute")
-                    .style("z-index", "999999999")
-                    .style("visibility", "hidden")
-                    .text("a simple tooltip");
 
     d3.json("map/topojson-mx.json", function(error, mx) {
       if (error) throw error;
