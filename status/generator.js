@@ -22,7 +22,7 @@
         });
       });
 
-      drawTreemap(title);
+      drawTreemap("Cantidad de carpetas");
 
       function drawTreemap(showText){
         //instantiate d3plus Treemap

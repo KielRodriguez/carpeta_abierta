@@ -72,9 +72,21 @@
   }
 
   function activeButton(buttonEl) {
+    var titles = {
+      "Delito": "Se muestra el total de carpetas de investigación por tipo de delito.",
+      "Proceso Penal": "Se muestra el total de carpetas por etapa del proceso penal, dado el estatus en el que se encuentran a la fecha de la última actualización.",
+      "Unidad Administrativa": "Se muestra el total de carpetas distribuidas por Unidad Administrativa encargada de la investigación.",
+      "Ministerio Público": "Se muestra el total de carpetas distribuidas por agencia del ministerio público encargada de llevar a cabo la investigación.",
+      "Entidad": "Se muestra el total de carpetas de investigación por entidad.",
+      "Sentencia": "Se muestra la distribución de las carpetas por tipo de sentencia, dado el estatus en el que se encuentran a la fecha de la última actualización."
+    }
+
     $("#status-activators")
     .find(".btn-primary")
     .removeClass("btn-primary");
     buttonEl.addClass("btn-primary");
+
+    // Agrega un título al la gráfica seleccionada
+    $('#title-status-activator').text(titles[buttonEl.text()]);
   }
 })();
