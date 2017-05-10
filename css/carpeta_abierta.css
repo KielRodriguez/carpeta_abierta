@@ -44,9 +44,9 @@ body {
 .amount span._141 { background-color: rgb(209, 109, 101); }
 
 /* Sólo para los tres span de la sección de seguimiento */
-.amount-tracking span._0 { background-color: rgb(186, 212, 163); }
-.amount-tracking span._1_5 { background-color: rgb(237, 210, 104); }
-.amount-tracking span._6 { background-color: rgb(226, 137, 59);}
+.amount-tracking span._0 { background-color: #ccc; }
+.amount-tracking span._1_5 { background-color: rgb(186, 212, 163); }
+.amount-tracking span._6 { background-color: rgb(237, 210, 104); }
 
 .amount-footer span {
   display: block;
