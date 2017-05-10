@@ -44,7 +44,6 @@
           var differentDays = [];
           var differentMonths = [];
           var totalChanges = 0;
-          var itemNum = 1;
           var firstChangesYear = parseInt(val.date_start.substr(6,4));
           var firstChangesMonth = parseInt(val.date_start.substr(3,2) - 1);
           var firstChangesDay = val.date_start.substr(0,2);
@@ -85,11 +84,18 @@
             var changesMonth = parseInt(_val.date.substr(3,2) - 1);
             var changesDay = _val.date.substr(0,2);
             var valueItem = "";
+            var labelItem = "";
 
             // Cambia valores de S Y N por Si o No
             if (_val.value === "S") { valueItem = "Si"; }
             else if (_val.value === "N") { valueItem = "No"; }
             else { valueItem = _val.value; }
+
+            // Cambia el label de fecha > hora
+            if(_val.title_text === "Fecha y hora de la última actualización") {
+              labelItem = "Hora de la última actualización";
+              valueItem = valueItem.substr(10,9);
+            } else { labelItem = _val.title_text; }
 
 
             if (changesYear === selectedYear) {
@@ -99,11 +105,11 @@
                 self.printChanges(
                   months[changesMonth],
                   changesDay,
-                  '<strong>'+ _val.title_text +':</strong> '+ valueItem
+                  '<strong>'+ labelItem +':</strong> '+ valueItem
                 );
 
-                // Suma un cambio más al mes
-                totalChanges++;
+                // El número de items por mes, es también una forma de contar los cambios
+                var totalChanges = $('.'+ months[changesMonth] +' .body-changes .item-changes').length;
                 // Imprime el número de cambios por mes
                 self.printTotalChanges(totalChanges, months[changesMonth]);
 
@@ -115,9 +121,12 @@
                 differentDays.push(changesDay);
                 // Si ya existe el mes y el dia
               } else if (differentMonths.indexOf(changesMonth) > -1 && differentDays.indexOf(changesDay) > -1) {
+                // Obtiene el item del último elemento item-changes que se encuentra hasta ese momento
+                var itemNum = $('.'+ months[changesMonth] +' .body-changes .item-changes').length;
+
                 $('#tracking-viz .'+ months[changesMonth] +' .body-changes .item-changes:nth-child('+ itemNum +')').append(
                   '<p class="item">' +
-                    '<strong>'+ _val.title_text +':</strong> '+ valueItem +
+                    '<strong>'+ labelItem +':</strong> '+ valueItem +
                   '</p>'
                 );
                 // Si existe el mes, pero no el día
@@ -125,16 +134,15 @@
                 self.printChanges(
                   months[changesMonth],
                   changesDay,
-                  '<strong>'+ _val.title_text +':</strong> '+ valueItem
+                  '<strong>'+ labelItem +':</strong> '+ valueItem
                 );
 
-                // Suma un cambio más al mes
-                totalChanges++;
+                // El número de items por mes, es también una forma de contar los cambios
+                var totalChanges = $('.'+ months[changesMonth] +' .body-changes .item-changes').length;
                 // Imprime el número de cambios por mes
                 self.printTotalChanges(totalChanges, months[changesMonth]);
 
                 differentDays.push(changesDay);
-                itemNum++;
               }
             }
           });
