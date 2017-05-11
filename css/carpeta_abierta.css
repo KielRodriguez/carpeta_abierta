@@ -332,6 +332,7 @@ body {
 .month-changes .item-changes p.item {
   margin: 0;
   line-height: 1.4;
+  padding-bottom: 5px;
 }
 
 /*
