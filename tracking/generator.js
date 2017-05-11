@@ -146,6 +146,29 @@
               }
             }
           });
+
+          // Remueve único cambio de hora de actualización:
+          // "Hora de la última actualización"
+          months.forEach(function(ival, iind) {
+            var sizeItemChanges = $('.'+ ival +' .body-changes .item-changes').length;
+
+            if (sizeItemChanges > 0) {
+              for (var i = 1; i <= sizeItemChanges; i++) {
+                if ($('.'+ ival +' .body-changes .item-changes:nth-child('+ i +') .item').length === 1 &&
+                    $('.'+ ival +' .body-changes .item-changes:nth-child(1) .item:nth-child(2) strong').text() === "Hora de la última actualización:") {
+                  // Se remueve la única actualización de hora
+                  $('.'+ ival +' .body-changes .item-changes:nth-child('+ i +')').remove();
+                  
+                  // Se hace el recuento de cambios de a cuerdo
+                  // a los elementos existentes
+                  var textChanges = $('.'+ ival +' .header .changes').text();
+                  var totChanges = parseInt(textChanges.substr(0,1));
+
+                  self.printTotalChanges(--totChanges, ival);
+                }
+              }
+            }
+          });
         }
       });
 
@@ -171,11 +194,14 @@
 
     // Pinta el número de cambios hechos en un mes descrito
     printTotalChanges: function(total, monthName) {
-      var numChanges = total === 1 ? "1 cambio" : total + " cambios";
+      var numChanges = total === 0 ? "Sin cambios" : total === 1 ? "1 cambio" : total + " cambios";
 
       $('#tracking-viz .'+ monthName +' .header .changes').text(numChanges);
 
-      if (total <= 5) {
+      if (total === 0) {
+        $('#tracking-viz .'+ monthName +' .header .line-changes').removeClass('_1_5');
+        $('#tracking-viz .'+ monthName +' .header .line-changes').removeClass('_6');
+      } else if (total <= 5) {
         $('#tracking-viz .'+ monthName +' .header .line-changes').addClass('_1_5');
       } else if (total > 5) {
         $('#tracking-viz .'+ monthName +' .header .line-changes').removeClass('_1_5');
