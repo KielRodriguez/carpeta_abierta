@@ -155,7 +155,7 @@
             if (sizeItemChanges > 0) {
               for (var i = 1; i <= sizeItemChanges; i++) {
                 if ($('.'+ ival +' .body-changes .item-changes:nth-child('+ i +') .item').length === 1 &&
-                    $('.'+ ival +' .body-changes .item-changes:nth-child(1) .item:nth-child(2) strong').text() === "Hora de la última actualización:") {
+                    $('.'+ ival +' .body-changes .item-changes:nth-child('+ i +') .item:nth-child(2) strong').text() === "Hora de la última actualización:") {
                   // Se remueve la única actualización de hora
                   $('.'+ ival +' .body-changes .item-changes:nth-child('+ i +')').remove();
                   
