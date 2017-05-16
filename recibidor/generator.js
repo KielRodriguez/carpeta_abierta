@@ -28,8 +28,8 @@
         // menos 1 para que coincida con el indice del array
         var idState = pureDatas[11] - 1;
         var state = "";
-        if (idState < 0) { state = states[0].name }
-        else if (idState === 32) { state = states[31].name }
+        if (idState < 0) { state = states[0].name; idState = 1; }
+        else if (idState === 32) { state = states[31].name; idState = 32; }
         else { state = states[idState].name }
 
         // Seleccionador de veredicto
@@ -59,7 +59,9 @@
             "admin_unit": pureDatas[5],
             "mp": pureDatas[6],
             "verdict": veredict,
+            "idState": idState,
             "state": state,
+            "idTown": pureDatas[12],
             "changes": 0,
             "complete_changes": [],
             "value": 1
@@ -81,7 +83,9 @@
           jsonResult[indexId].admin_unit = pureDatas[5];
           jsonResult[indexId].mp = pureDatas[6];
           jsonResult[indexId].verdict = veredict;
+          jsonResult[indexId].idState = idState;
           jsonResult[indexId].state = state;
+          jsonResult[indexId].idTown = pureDatas[12];
           jsonResult[indexId].changes += 1;
 
           // Agregar elementos que no son iguales
