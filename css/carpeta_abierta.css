@@ -258,6 +258,40 @@ body {
 #map-viz {
   height: 600px;
 }
+#map-viz .m-1-15 { fill: rgb(186, 212, 163); stroke: rgb(186, 212, 163); }
+/*#map-viz .m-1-15:hover { fill: rgb(153, 192, 119); }*/
+
+#map-viz .m-16-30 { fill: rgb(237, 210, 104); stroke: rgb(237, 210, 104); }
+/*#map-viz .m-16-30:hover { fill: rgb(221, 191, 77); }*/
+
+#map-viz .m-31-60 { fill: rgb(235, 173, 105); stroke: rgb(235, 173, 105); }
+/*#map-viz .m-31-60:hover { fill: rgb(209, 138, 61); }*/
+
+#map-viz .m-61-140 { fill: rgb(226, 137, 59); stroke: rgb(226, 137, 59); }
+/*#map-viz .m-61-140:hover { fill: rgb(195, 108, 32);; }*/
+
+#map-viz .m-141 { fill: rgb(209, 109, 101); stroke: rgb(209, 109, 101); }
+/*#map-viz .m-141:hover { fill: rgb(177, 66, 58);; }*/
+
+.municipalities {
+  fill: #f7f7f7;
+  stroke: #d2d2d2;
+}
+
+.state-boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+
+.municipality-boundary {
+  fill: none;
+  stroke: #d2d2d2;
+  stroke-opacity: .25;
+  stroke-width: .4px;
+  pointer-events: none;
+}
 
 /*
 ** Sección de seguimiento de carpeta
@@ -349,30 +383,3 @@ option {
 }
 
 /* ------------------------- */
-
-
-
-
-.municipalities {
-  fill: #fff;
-  stroke: #d2d2d2;
-}
-
-.municipalities :hover {
-  fill: orange;
-}
-
-.state-boundary {
-  fill: none;
-  stroke: #bbb;
-  stroke-width: 2px;
-  pointer-events: none;
-}
-
-.municipality-boundary {
-  fill: none;
-  stroke: #d2d2d2;
-  stroke-opacity: .25;
-  stroke-width: .5px;
-  pointer-events: none;
-}

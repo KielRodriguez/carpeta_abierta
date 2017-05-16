@@ -15,18 +15,19 @@
 
       // // sample data array
       // var sample_data = [
-      //   {"value": 7123, "country": "namex", "name": "México"},
-      //   {"value": 1349, "country": "nausa", "name": "Estados Unidos"}
+      //   {"value": 7123, "country": "Colima", "name": "Colima"},
+      //   {"value": 1349, "country": "Jalisco", "name": "Jalisco"}
       // ]
       // // instantiate d3plus
       // var visualization = d3plus.viz()
       //   .container("#map-viz")        // container DIV to hold the visualization
       //   .data(sample_data)        // data to use with the visualization
-      //   //.coords("http://d3plus.org/topojson/countries.json") // pass topojson coordinates
-      //   .coords({
-      //     "solo": ["namex"],
-      //     "value": "http://d3plus.org/topojson/countries.json"
-      //   })
+      //   .coords("../datas/edostopo.json") // pass topojson coordinates
+      //   // .coords({
+      //   //   "solo": ["properties.estado"],
+      //   //   "value": "../datas/edostopo.json"
+      //   //   // "value": "http://d3plus.org/topojson/countries.json"
+      //   // })
       //   .type("geo_map")          // visualization type
       //   .id("country")            // key for which our data is unique on
       //   .text("name")             // key to use for display text
