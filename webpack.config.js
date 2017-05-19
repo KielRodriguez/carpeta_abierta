@@ -9,10 +9,13 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname,
   devtool: "inline-sourcemap",
-  entry: "./js/main.js",
+  entry: {
+    main: "./js/main.js",
+    map: "./js/map.js"
+  },
   output: {
     path: __dirname + "/js",
-    filename: "bundle.min.js"
+    filename: "[name].bundle.min.js"
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
