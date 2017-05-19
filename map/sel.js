@@ -9,6 +9,13 @@ var unity = [];
 var years = [];
 var jsonDat = {};
 
+// Sólo para filtrados
+var filters = [];
+var filterSelected = [];
+
+var levelSelected = "";
+var yearSelected = "";
+
 //Carga json Treemap
 $.ajax({
   url: "../datas/carpa.json",
@@ -41,15 +48,56 @@ jsonDat.forEach(function(val, ind) {
     years.push(val.date.substr(6,4));
     $years.append('<option value="'+ val.date.substr(6,4) +'">'+ val.date.substr(6,4) +'</option>');
   }
-
-  // // Ordena el json como es necesario para el calendario
-  // calendarDatas.push({
-  //   id: val.id,
-  //   dateChanges: new Date("" + val.date.substr(6,4) + "," + val.date.substr(3,2) + "," + val.date.substr(0,2)),
-  //   changesFolder: val.changes,
-  //   status: val.status_process,
-  //   crime: val.crime,
-  //   mp: val.mp,
-  //   admin_unit: val.admin_unit
-  // });
 });
+
+// Selector de tipo (nivel) de mapa que se mostrará
+$('#map-level button').on('click', function() {
+  var level = $(this).text();
+
+  $('#map-level button.btn-primary').removeClass('btn-primary').addClass('btn-default');
+  $(this).addClass('btn-primary');
+
+  $('svg#map-viz *').remove();
+
+  totalFilters();
+  createMapViz(level, filters, filterSelected, $years.val());
+});
+
+// Selector y filtrado con tipos de delito
+$('#map-crime, #map-agency, #map-unity').on('change', function() {
+  var level = $('#map-level button.btn-primary').text();
+
+  $('svg#map-viz *').remove();
+
+  totalFilters();
+  createMapViz(level, filters, filterSelected, $years.val());
+});
+
+// Selector de año
+$years.on('change', function() {
+  var level = $('#map-level button.btn-primary').text();
+
+  $('svg#map-viz *').remove();
+
+  totalFilters();
+  createMapViz(level, filters, filterSelected, $years.val());
+});
+
+// Obtiene el o los tipos de filtrados que el usuario elija
+function totalFilters() {
+  filters = [];
+  filterSelected = [];
+  
+  if ($crime.val() !== "default") {
+    filters.push("crime");
+    filterSelected.push($crime.val());
+  }
+  if ($mp.val() !== "default") {
+    filters.push("mp");
+    filterSelected.push($mp.val())
+  }
+  if ($unity.val() !== "default") {
+    filters.push("admin_unit");
+    filterSelected.push($unity.val());
+  }
+}

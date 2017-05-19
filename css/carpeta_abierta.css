@@ -254,28 +254,39 @@ body {
 ** Sección de mapa
 ** -------------------------------
 */
-
+#map { margin-bottom: 30px; }
 #map-viz {
-  height: 600px;
+  display: block;
+  margin: auto;
 }
-#map-viz .m-1-15 { fill: rgb(186, 212, 163); stroke: rgb(186, 212, 163); }
-/*#map-viz .m-1-15:hover { fill: rgb(153, 192, 119); }*/
+#map-viz .m-1-15 { fill: rgb(186, 212, 163); }
+#map-viz .m-1-15:hover { fill: rgb(153, 192, 119); }
 
-#map-viz .m-16-30 { fill: rgb(237, 210, 104); stroke: rgb(237, 210, 104); }
-/*#map-viz .m-16-30:hover { fill: rgb(221, 191, 77); }*/
+#map-viz .s-1-15 { fill: rgb(186, 212, 163); stroke: rgb(186, 212, 163); }
 
-#map-viz .m-31-60 { fill: rgb(235, 173, 105); stroke: rgb(235, 173, 105); }
-/*#map-viz .m-31-60:hover { fill: rgb(209, 138, 61); }*/
+#map-viz .m-16-30 { fill: rgb(237, 210, 104); }
+#map-viz .m-16-30:hover { fill: rgb(221, 191, 77); }
 
-#map-viz .m-61-140 { fill: rgb(226, 137, 59); stroke: rgb(226, 137, 59); }
-/*#map-viz .m-61-140:hover { fill: rgb(195, 108, 32);; }*/
+#map-viz .s-16-30 { fill: rgb(237, 210, 104); stroke: rgb(237, 210, 104); }
 
-#map-viz .m-141 { fill: rgb(209, 109, 101); stroke: rgb(209, 109, 101); }
-/*#map-viz .m-141:hover { fill: rgb(177, 66, 58);; }*/
+#map-viz .m-31-60 { fill: rgb(235, 173, 105); }
+#map-viz .m-31-60:hover { fill: rgb(209, 138, 61); }
+
+#map-viz .s-31-60 { fill: rgb(235, 173, 105); stroke: rgb(235, 173, 105); }
+
+#map-viz .m-61-140 { fill: rgb(226, 137, 59); }
+#map-viz .m-61-140:hover { fill: rgb(195, 108, 32);; }
+
+#map-viz .s-61-140 { fill: rgb(226, 137, 59); stroke: rgb(226, 137, 59); }
+
+#map-viz .m-141 { fill: rgb(209, 109, 101); }
+#map-viz .m-141:hover { fill: rgb(177, 66, 58);; }
+
+#map-viz .s-141 { fill: rgb(209, 109, 101); stroke: rgb(209, 109, 101); }
 
 .municipalities {
-  fill: #f7f7f7;
-  stroke: #d2d2d2;
+  fill: #e5e5e5;
+  stroke: #bababa;
 }
 
 .state-boundary {
