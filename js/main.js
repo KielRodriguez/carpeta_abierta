@@ -16,9 +16,6 @@
   // Módulo de status
   require('../status/selector.js');
 
-  // Módulo de mapa
-  require('../map/selector.js');
-
   // Módulo de seguimiento de carpeta
   require('../tracking/selector.js');
 })();
