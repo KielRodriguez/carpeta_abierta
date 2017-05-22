@@ -10,6 +10,7 @@
   'use strict';
 
   var jsonDatas = require('../datas/carpa.json');
+  var d3 = require('d3');
 
   exports.Generator = {
     // Agrega el color de acuerdo al total de cambios
@@ -59,21 +60,22 @@
           .attr("d", path)
           .attr("id-estado", function(d) { return parseInt(d.properties.CVE_ENT) })
           .attr("id-municipio", function(d) { return parseInt(d.properties.CVE_MUN) })
-          .attr("class", function(d) {
-            var total = 0;
+          // .attr("class", function(d) {
+          //   var total = 0;
 
-            jsonDatas.forEach(function(val, ind) {
-              if (
-                parseInt(d.properties.CVE_ENT) === parseInt(val.idState) &&
-                parseInt(d.properties.CVE_MUN) === parseInt(val.idTown) &&
-                val.date.substr(6,4) === mapYear
-              ) {
-                total++;
-              }
-            });
+          //   jsonDatas.forEach(function(val, ind) {
+          //     if (
+          //       parseInt(d.properties.CVE_ENT) === parseInt(val.idState) &&
+          //       parseInt(d.properties.CVE_MUN) === parseInt(val.idTown) &&
+          //       val.date.substr(6,4) === mapYear
+          //     ) {
+          //       total++;
+          //     }
+          //   });
 
-            return self.getTotalChanges(total, 'm');
-          });
+          //   return self.getTotalChanges(total, 'm');
+          // })
+          ;
           // .on("mouseover", function(d) {
           //   $('#map-viz path[id-estado="'+ d.properties.state +'"]').css({fill: 'red', stroke: 'red'});
           // })

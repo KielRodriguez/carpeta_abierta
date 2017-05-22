@@ -61,7 +61,7 @@
     $('svg#map-viz *').remove();
 
     totalFilters();
-    loadMap(level, filters, filterSelected, $years.val());
+    Generator.loadMap(level, filters, filterSelected, $years.val());
   });
 
   // Selector y filtrado con tipos de delito
@@ -71,7 +71,7 @@
     $('svg#map-viz *').remove();
 
     totalFilters();
-    loadMap(level, filters, filterSelected, $years.val());
+    Generator.loadMap(level, filters, filterSelected, $years.val());
   });
 
   // Selector de año
@@ -81,7 +81,7 @@
     $('svg#map-viz *').remove();
 
     totalFilters();
-    loadMap(level, filters, filterSelected, $years.val());
+    Generator.loadMap(level, filters, filterSelected, $years.val());
   });
 
   // Obtiene el o los tipos de filtrados que el usuario elija
@@ -107,6 +107,6 @@
     $('#map-level button.btn-primary').text(),
     [],
     [],
-    $('#map-years').val()
+    $years.val()
   );
 })();

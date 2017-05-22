@@ -18,6 +18,9 @@ module.exports = {
     filename: "[name].bundle.min.js"
   },
   plugins: [
+    new webpack.ProvidePlugin({
+        d3: 'd3'
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
