@@ -11,3 +11,7 @@ Carpeta abierta es un visualizador en tiempo real de los reportes que son hechos
     http-serve
 
 Ir a: localhost:8080
+
+## Instalación con Docker
+
+    docker run --name carpeta_abierta -p 3000:80 -d mendozagioo/carpeta_abierta:v1
