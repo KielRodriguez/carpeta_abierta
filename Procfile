@@ -1,1 +1,1 @@
-web: http-serve
+web: bundle exec http-serve
