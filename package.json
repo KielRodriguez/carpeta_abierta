@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Carpeta abierta es un visualizador en tiempo real de los reportes que son hechos en la PGR",
   "scripts": {
-    "start": "http-serve"
+    "start": "webpack --config webpack.config.js"
   },
   "author": "Giovanni Mendoza",
   "license": "MIT",

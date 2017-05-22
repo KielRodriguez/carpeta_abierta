@@ -19,7 +19,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-        d3: 'd3'
+      d3: 'd3'
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({

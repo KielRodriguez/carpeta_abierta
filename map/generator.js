@@ -28,6 +28,35 @@
       }
     },
 
+    getTotalAmount: function(total, val, mapFilters, mapFilterSelected) {
+      switch (mapFilters.length) {
+        case 3:
+          if (mapFilterSelected[0] === val.crime &&
+            mapFilterSelected[1] === val.mp &&
+            mapFilterSelected[2] === val.admin_unit
+          ) {
+            total++;
+          }
+          break;
+        case 2:
+          if (mapFilterSelected[0] === val[mapFilters[0]] &&
+            mapFilterSelected[1] === val[mapFilters[1]]
+          ) {
+            total++;
+          }
+          break;
+        case 1:
+          if (mapFilterSelected[0] === val[mapFilters[0]]) {
+            total++;
+          }
+          break;
+        default:
+          total++;
+      }
+
+      return total;
+    },
+
     // Carga el mapa con los filtros correspondientes
     loadMap: function(mapLevel, mapFilters, mapFilterSelected, mapYear) {
       var self = this;
@@ -41,7 +70,7 @@
           .scale(1850)
           .translate([width / 2, height / 2]);
 
-      var svg = d3.select("svg#map-viz");
+      var svg = d3.select("#map svg#map-viz");
       var path = d3.geo.path().projection(projection);
       var tooltip = svg.append("g")
                       .style("position", "absolute")
@@ -63,17 +92,30 @@
           .attr("class", function(d) {
             var total = 0;
 
-            jsonDatas.forEach(function(val, ind) {
-              if (
-                parseInt(d.properties.CVE_ENT) === parseInt(val.idState) &&
-                parseInt(d.properties.CVE_MUN) === parseInt(val.idTown) &&
-                val.date.substr(6,4) === mapYear
-              ) {
-                total++;
-              }
-            });
+            if (mapLevel === "Municipal") {
+              jsonDatas.forEach(function(val, ind) {
+                if (
+                  parseInt(d.properties.CVE_ENT) === parseInt(val.idState) &&
+                  parseInt(d.properties.CVE_MUN) === parseInt(val.idTown) &&
+                  val.date.substr(6,4) === mapYear
+                ) {
+                  total = self.getTotalAmount(total, val, mapFilters, mapFilterSelected);
+                }
+              });
 
-            return self.getTotalChanges(total, 'm');
+              return self.getTotalChanges(total, 'm');
+            } else {
+              jsonDatas.forEach(function(val, ind) {
+                if (
+                  parseInt(d.properties.CVE_ENT) === parseInt(val.idState) &&
+                  val.date.substr(6,4) === mapYear
+                ) {
+                  total = self.getTotalAmount(total, val, mapFilters, mapFilterSelected);
+                }
+              });
+
+              return self.getTotalChanges(total, 's');
+            }
           });
           // .on("mouseover", function(d) {
           //   $('#map-viz path[id-estado="'+ d.properties.state +'"]').css({fill: 'red', stroke: 'red'});

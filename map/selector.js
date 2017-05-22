@@ -58,17 +58,20 @@
     $('#map-level button.btn-primary').removeClass('btn-primary').addClass('btn-default');
     $(this).addClass('btn-primary');
 
-    $('svg#map-viz *').remove();
+    $('#map svg#map-viz *').remove();
 
     totalFilters();
     Generator.loadMap(level, filters, filterSelected, $years.val());
+
+    if (level === "Estatal") { $('municipalities').css('stroke', '#e5e5e5'); }
+    else { $('municipalities').css('stroke', '#bababa'); }
   });
 
   // Selector y filtrado con tipos de delito
-  $('#map-crime, #map-agency, #map-unity').on('change', function() {
+  $('#map-crime, #map-mp, #map-unity').on('change', function() {
     var level = $('#map-level button.btn-primary').text();
 
-    $('svg#map-viz *').remove();
+    $('#map svg#map-viz *').remove();
 
     totalFilters();
     Generator.loadMap(level, filters, filterSelected, $years.val());
@@ -78,7 +81,7 @@
   $years.on('change', function() {
     var level = $('#map-level button.btn-primary').text();
 
-    $('svg#map-viz *').remove();
+    $('#map svg#map-viz *').remove();
 
     totalFilters();
     Generator.loadMap(level, filters, filterSelected, $years.val());
