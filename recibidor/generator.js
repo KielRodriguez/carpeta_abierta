@@ -59,7 +59,7 @@
             "admin_unit": pureDatas[5],
             "mp": pureDatas[6],
             "verdict": veredict,
-            "idState": idState,
+            "idState": ++idState,
             "state": state,
             "idTown": pureDatas[12],
             "changes": 0,
@@ -83,7 +83,7 @@
           jsonResult[indexId].admin_unit = pureDatas[5];
           jsonResult[indexId].mp = pureDatas[6];
           jsonResult[indexId].verdict = veredict;
-          jsonResult[indexId].idState = idState;
+          jsonResult[indexId].idState = ++idState;
           jsonResult[indexId].state = state;
           jsonResult[indexId].idTown = pureDatas[12];
           jsonResult[indexId].changes += 1;
