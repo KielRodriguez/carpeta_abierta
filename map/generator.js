@@ -10,12 +10,14 @@
   'use strict';
 
   var jsonDatas = require('../datas/carpa.json');
-  var d3 = require('d3');
+  var states = require('../datas/states.json');
 
   exports.Generator = {
     // Agrega el color de acuerdo al total de cambios
     getTotalChanges: function(val, sm) {
-      if (val > 0 && val <= 15) {
+      if (val === 0 && sm === "s") {
+        return sm + "-0";
+      }else if (val > 0 && val <= 15) {
         return sm + "-1-15";
       } else if (val > 15 && val <= 30) {
         return sm + "-16-30";
@@ -57,6 +59,57 @@
       return total;
     },
 
+    renderMapPops: function() {
+      $('#map svg#map-viz g path').mousemove(function(e) {
+        //console.log("x: " + e.pageX + "  --  y: " + e.pageY);
+        $('.map-pops').remove();
+
+				$('body').append('<div class="map-pops">' +
+				  '<span class="arrow"></span>' +
+					'<p class="line-data date">' +
+						'<span class="title">'+ $(this).attr('level') +'</span>' +
+            '<span class="count">'+ $(this).attr('level-val') +'</span>' +
+						'<span class="line"></span>' +
+					'</p>' +
+					'<p class="line-data totals">' +
+						'<span class="title">Total de cambios</span>' +
+            '<span class="count">'+ $(this).attr('total-changes') +'</span>' +
+					'</p>' +
+					'<p class="line-data changes-folder">' +
+						'<span class="title">Tipo de delito</span>' +
+            '<span class="count">0</span>' +
+						// '<span class="count">'+ $(this).attr('data-changes-folder') +'</span>' +
+					'</p>' +
+					'<p class="line-data new-folders">' +
+						'<span class="title">Agencia del ministerio público</span>' +
+            '<span class="count">0</span>' +
+						// '<span class="count">'+ $(this).attr('data-new-folders') +'</span>' +
+					'</p>' +
+					'<p class="line-data complementary">' +
+						'<span class="title">Unidad administrativa</span>' +
+            '<span class="count">0</span>' +
+						// '<span class="count">'+ $(this).attr('data-complementary') +'</span>' +
+					'</p>' +
+					// '<p class="line-data intermediate">' +
+					// 	'<span class="title">Carpetas que cambiaron a etapa intermedia</span>' +
+					// 	'<span class="count">'+ $(this).attr('data-intermediate') +'</span>' +
+					// '</p>' +
+					// '<p class="line-data judgment">' +
+					// 	'<span class="title">Carpetas que cambiaron a juicio</span>' +
+					// 	'<span class="count">'+ $(this).attr('data-judgment') +'</span>' +
+					// '</p>' +
+				'</div>');
+
+        $('.map-pops').css({top: e.pageY -28, left: e.pageX + 30});
+
+				// $('.line-data.' + $('#calendar-changes option:selected').val()).addClass('indicator-selected');
+
+        $('#map svg#map-viz g path, .map-pops').mouseleave(function() {
+          $('.map-pops').remove();
+        });
+      });
+    },
+
     // Carga el mapa con los filtros correspondientes
     loadMap: function(mapLevel, mapFilters, mapFilterSelected, mapYear) {
       var self = this;
@@ -72,11 +125,6 @@
 
       var svg = d3.select("#map svg#map-viz");
       var path = d3.geo.path().projection(projection);
-      var tooltip = svg.append("g")
-                      .style("position", "absolute")
-                      .style("z-index", "999999999")
-                      .style("visibility", "hidden")
-                      .text("a simple tooltip");
 
       d3.json("../map/mx_idMun.json", function(error, mx) {
         if (error) throw error;
@@ -89,7 +137,8 @@
           .attr("d", path)
           .attr("id-estado", function(d) { return parseInt(d.properties.CVE_ENT) })
           .attr("id-municipio", function(d) { return parseInt(d.properties.CVE_MUN) })
-          .attr("class", function(d) {
+          .each(function(d) {
+            var el = d3.select(this);
             var total = 0;
 
             if (mapLevel === "Municipal") {
@@ -103,7 +152,10 @@
                 }
               });
 
-              return self.getTotalChanges(total, 'm');
+              el.attr('class', self.getTotalChanges(total, 'm'));
+              el.attr('total-changes', total);
+              el.attr('level', 'Municipio');
+              el.attr('level-val', d.properties.NOM_MUN);
             } else {
               jsonDatas.forEach(function(val, ind) {
                 if (
@@ -114,29 +166,20 @@
                 }
               });
 
-              return self.getTotalChanges(total, 's');
+              el.attr('class', self.getTotalChanges(total, 's'));
+              el.attr('total-changes', total);
+              el.attr('level', 'Estado');
+              el.attr('level-val', states[parseInt(d.properties.CVE_ENT) - 1].name);
             }
           });
-          // .on("mouseover", function(d) {
-          //   $('#map-viz path[id-estado="'+ d.properties.state +'"]').css({fill: 'red', stroke: 'red'});
-          // })
-          // .on("mouseout", function(d) {
-          //   $('#map-viz path').css({fill: '#fff', stroke: '#d2d2d2'});
-          // })
-
-          //  .on("mouseover", function(event){return tooltip.style("visibility", "visible").style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-          //  .on("mousemove", function(event){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
-          //  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
         svg.append("path")
           .datum(topojson.mesh(mx, mx.objects.municipios2, function(a, b) { return a.properties.CVE_ENT !== b.properties.CVE_ENT; }))
           .attr("class", "state-boundary")
           .attr("d", path);
 
-        // svg.append("path")  
-        //    .datum(topojson.mesh(mx, mx.objects.municipalities, function(a, b) { return a.properties.state === b.properties.state && a !== b; }))
-        //    .attr("class", "municipality-boundary")
-        //    .attr("d", path);
+        // Obtiene los datos de los path y los coloca en el tooltip
+        self.renderMapPops();
       });
 
       // // sample data array

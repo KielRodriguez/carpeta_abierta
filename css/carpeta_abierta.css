@@ -132,7 +132,8 @@ body {
  * ----------------
 */
 
-.pops {
+.pops,
+.map-pops {
   position: absolute;
   top: 0;
   left: 0;
@@ -165,7 +166,8 @@ body {
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
   line-break: auto;
 }
-.pops > .arrow {
+.pops > .arrow,
+.map-pops > .arrow {
   position: absolute;
   display: block;
   width: 0;
@@ -180,7 +182,8 @@ body {
   border-left-width: 0;
   border-width: 11px;
 }
-.pops > .arrow:after {
+.pops > .arrow:after,
+.map-pops > .arrow:after  {
   content: "";
   position: absolute;
   display: block;
@@ -195,29 +198,34 @@ body {
   border-left-width: 0;
   border-width: 10px;
 }
-.pops .line-data {
+.pops .line-data,
+.map-pops .line-data {
   padding: 7px 15px;
   margin: 0;
   line-height: 1.2;
 }
-.pops .line-data.date { padding: 15px; }
-.pops .line-data.date .line {
+.pops .line-data.date, .map-pops .line-data.date { padding: 15px; }
+.pops .line-data.date .line,
+.map-pops .line-data.date .line {
   display: block;
   width: 100%;
   height: 1px;
   margin-top: 10px;
   background-color:#b4b4b4;
 }
-.pops .line-data .title {
+.pops .line-data .title,
+.map-pops .line-data .title {
   display: block;
   font-size: 11px;
   text-transform: uppercase;
 }
-.pops .line-data .count {
+.pops .line-data .count,
+.map-pops .line-data .count {
   display: block;
   font-size: 18px;
 }
-.pops .line-data.indicator-selected {
+.pops .line-data.indicator-selected,
+.map-pops .line-data.indicator-selected {
   background-color: #ddd;
 }
 
@@ -259,6 +267,8 @@ body {
   display: block;
   margin: auto;
 }
+#map-viz .s-0 { fill: #e5e5e5; stroke: #e5e5e5; }
+
 #map-viz .m-1-15 { fill: rgb(186, 212, 163); }
 #map-viz .m-1-15:hover { fill: rgb(153, 192, 119); }
 
@@ -302,6 +312,35 @@ body {
   stroke-opacity: .25;
   stroke-width: .4px;
   pointer-events: none;
+}
+
+.tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
 }
 
 /*
