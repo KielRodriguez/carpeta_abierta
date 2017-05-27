@@ -61,48 +61,57 @@
 
     renderMapPops: function() {
       $('#map svg#map-viz g path').mousemove(function(e) {
-        //console.log("x: " + e.pageX + "  --  y: " + e.pageY);
+        var lvl = $('#map-level .btn-primary').text();
+        var crime = $('#map-crime').val();
+        var mp = $('#map-mp').val();
+        var unity = $('#map-unity').val();
+
+        crime = crime === "default" ? "todos" : crime;
+        mp = mp === "default" ? "todos" : mp;
+        unity = unity === "default" ? "todos" : unity;
+
+        if (lvl === "Municipal") {
+          lvl = '<p class="line-data solid">' +
+                  '<span class="title">Municipio</span>' +
+                  '<span class="count">'+ $(this).attr('town') +'</span>' +
+                '</p>' +
+                '<p class="line-data solid">' +
+                  '<span class="title">Estado</span>' +
+                  '<span class="count">'+ $(this).attr('state') +'</span>' +
+                  '<span class="line"></span>' +
+                '</p>';
+        } else {
+          lvl = '<p class="line-data solid up">' +
+                  '<span class="title">Estado</span>' +
+                  '<span class="count">'+ $(this).attr('state') +'</span>' +
+                  '<span class="line"></span>' +
+                '</p>';
+        }
+
         $('.map-pops').remove();
 
 				$('body').append('<div class="map-pops">' +
 				  '<span class="arrow"></span>' +
-					'<p class="line-data date">' +
-						'<span class="title">'+ $(this).attr('level') +'</span>' +
-            '<span class="count">'+ $(this).attr('level-val') +'</span>' +
-						'<span class="line"></span>' +
-					'</p>' +
+          lvl +
 					'<p class="line-data totals">' +
 						'<span class="title">Total de cambios</span>' +
             '<span class="count">'+ $(this).attr('total-changes') +'</span>' +
 					'</p>' +
 					'<p class="line-data changes-folder">' +
 						'<span class="title">Tipo de delito</span>' +
-            '<span class="count">0</span>' +
-						// '<span class="count">'+ $(this).attr('data-changes-folder') +'</span>' +
+						'<span class="count">'+ crime +'</span>' +
 					'</p>' +
 					'<p class="line-data new-folders">' +
 						'<span class="title">Agencia del ministerio público</span>' +
-            '<span class="count">0</span>' +
-						// '<span class="count">'+ $(this).attr('data-new-folders') +'</span>' +
+            '<span class="count">'+ mp +'</span>' +
 					'</p>' +
 					'<p class="line-data complementary">' +
 						'<span class="title">Unidad administrativa</span>' +
-            '<span class="count">0</span>' +
-						// '<span class="count">'+ $(this).attr('data-complementary') +'</span>' +
+            '<span class="count">'+ unity +'</span>' +
 					'</p>' +
-					// '<p class="line-data intermediate">' +
-					// 	'<span class="title">Carpetas que cambiaron a etapa intermedia</span>' +
-					// 	'<span class="count">'+ $(this).attr('data-intermediate') +'</span>' +
-					// '</p>' +
-					// '<p class="line-data judgment">' +
-					// 	'<span class="title">Carpetas que cambiaron a juicio</span>' +
-					// 	'<span class="count">'+ $(this).attr('data-judgment') +'</span>' +
-					// '</p>' +
 				'</div>');
 
         $('.map-pops').css({top: e.pageY -28, left: e.pageX + 30});
-
-				// $('.line-data.' + $('#calendar-changes option:selected').val()).addClass('indicator-selected');
 
         $('#map svg#map-viz g path, .map-pops').mouseleave(function() {
           $('.map-pops').remove();
@@ -135,8 +144,8 @@
           .data(topojson.feature(mx, mx.objects.municipios2).features)
           .enter().append("path")
           .attr("d", path)
-          .attr("id-estado", function(d) { return parseInt(d.properties.CVE_ENT) })
-          .attr("id-municipio", function(d) { return parseInt(d.properties.CVE_MUN) })
+          .attr("state", function(d) { return states[parseInt(d.properties.CVE_ENT) - 1].name })
+          .attr("town", function(d) { return d.properties.NOM_MUN })
           .each(function(d) {
             var el = d3.select(this);
             var total = 0;
@@ -154,8 +163,6 @@
 
               el.attr('class', self.getTotalChanges(total, 'm'));
               el.attr('total-changes', total);
-              el.attr('level', 'Municipio');
-              el.attr('level-val', d.properties.NOM_MUN);
             } else {
               jsonDatas.forEach(function(val, ind) {
                 if (
@@ -168,8 +175,6 @@
 
               el.attr('class', self.getTotalChanges(total, 's'));
               el.attr('total-changes', total);
-              el.attr('level', 'Estado');
-              el.attr('level-val', states[parseInt(d.properties.CVE_ENT) - 1].name);
             }
           });
 

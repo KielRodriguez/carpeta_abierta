@@ -204,9 +204,12 @@ body {
   margin: 0;
   line-height: 1.2;
 }
-.pops .line-data.date, .map-pops .line-data.date { padding: 15px; }
+.map-pops .line-data { text-transform: uppercase; }
+.map-pops .line-data.solid { font-weight: bold; }
+.pops .line-data.date, .map-pops .line-data.solid.up { padding: 15px; }
 .pops .line-data.date .line,
-.map-pops .line-data.date .line {
+.map-pops .line-data .line,
+.map-pops .line-data.date .line  {
   display: block;
   width: 100%;
   height: 1px;
