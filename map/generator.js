@@ -95,7 +95,7 @@
           lvl +
 					'<p class="line-data totals">' +
 						'<span class="title">Total de cambios</span>' +
-            '<span class="count">'+ $(this).attr('total-changes') +'</span>' +
+            '<span class="count">'+ $(this).attr('card') +'</span>' +
 					'</p>' +
 					'<p class="line-data changes-folder">' +
 						'<span class="title">Tipo de delito</span>' +
@@ -162,7 +162,7 @@
               });
 
               el.attr('class', self.getTotalChanges(total, 'm'));
-              el.attr('total-changes', total);
+              el.attr('card', total);
             } else {
               jsonDatas.forEach(function(val, ind) {
                 if (
@@ -174,7 +174,7 @@
               });
 
               el.attr('class', self.getTotalChanges(total, 's'));
-              el.attr('total-changes', total);
+              el.attr('card', total);
             }
           });
 
