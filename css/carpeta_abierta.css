@@ -367,7 +367,7 @@ body {
   background-color: #00aa80;
 }
 
-.month-changes {
+.card {
   margin-bottom: 12px;
   padding: 10px 16px 17px;
   border-radius: 4px;
@@ -375,19 +375,19 @@ body {
   -webkit-box-shadow: 0 0 6px rgba(0,0,0,.2);
   -moz-box-shadow: 0 0 6px rgba(0,0,0,.2);
 }
-.month-changes .header { position: relative; }
-.month-changes .month {
+.card .header { position: relative; }
+.card .month {
   text-transform: uppercase;
   margin-right: 20px;
 }
-.month-changes .changes,
-.month-changes .item-changes .item-date {
+.card .changes,
+.card .item-changes .item-date {
   font-size: 12px;
   color: #bbb;
   line-height: 1;
   margin: 0;
 }
-.month-changes .line-changes {
+.card .line-changes {
   display: block;
   width: 125px;
   height: 4px;
@@ -395,28 +395,28 @@ body {
   border-radius: 4px;
   background-color: #ccc;
 }
-.month-changes .line-changes._1_5 { background-color: rgb(186, 212, 163);}
-.month-changes .line-changes._6 { background-color: rgb(237, 210, 104); }
+.card .line-changes._1_5 { background-color: rgb(186, 212, 163);}
+.card .line-changes._6 { background-color: rgb(237, 210, 104); }
 /*
-.month-changes .line-changes._6 { background-color: rgb(226, 137, 59); }
+.card .line-changes._6 { background-color: rgb(226, 137, 59); }
 */
-.month-changes i {
+.card i {
   position: absolute;
   top: 10px;
   right: 0;
 }
 
-.month-changes .body-changes {
+.card .body-changes {
   max-height: 180px;
   overflow-y: scroll;
 }
-.month-changes .item-changes {
+.card .item-changes {
   margin-bottom: 12px;
 }
-.month-changes .item-changes:last-child {
+.card .item-changes:last-child {
   margin-bottom: 0;
 }
-.month-changes .item-changes p.item {
+.card .item-changes p.item {
   margin: 0;
   line-height: 1.4;
   padding-bottom: 5px;

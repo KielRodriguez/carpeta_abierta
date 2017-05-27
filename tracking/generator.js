@@ -34,9 +34,9 @@
       var folderYearFound = false;
 
       // Limpia datos anteriores
-      $('#tracking-viz .month-changes .header .changes').text('Sin cambios');
-      $('#tracking-viz .month-changes .body-changes .item-changes').remove();
-      $('#tracking-viz .month-changes .header .line-changes').removeClass('_1_5 _6');
+      $('#tracking-viz .card .header .changes').text('Sin cambios');
+      $('#tracking-viz .card .body-changes .item-changes').remove();
+      $('#tracking-viz .card .header .line-changes').removeClass('_1_5 _6');
 
       jsonDatas.forEach(function(val, ind) {
         // Busca el id de carpeta
@@ -212,7 +212,7 @@
     // Imprime los meses vacíos (sin información)
     printMonths: function(monthName) {
       return '' +
-        '<div class="month-changes ' + monthName + '">' +
+        '<div class="card ' + monthName + '">' +
           '<div class="header">' +
             '<span class="month">' + monthName + '</span>' +
             '<span class="changes">Sin cambios</span>' +
