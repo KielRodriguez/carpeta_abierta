@@ -132,7 +132,8 @@ body {
  * ----------------
 */
 
-.pops {
+.pops,
+.map-pops {
   position: absolute;
   top: 0;
   left: 0;
@@ -165,7 +166,8 @@ body {
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
   line-break: auto;
 }
-.pops > .arrow {
+.pops > .arrow,
+.map-pops > .arrow {
   position: absolute;
   display: block;
   width: 0;
@@ -180,7 +182,8 @@ body {
   border-left-width: 0;
   border-width: 11px;
 }
-.pops > .arrow:after {
+.pops > .arrow:after,
+.map-pops > .arrow:after  {
   content: "";
   position: absolute;
   display: block;
@@ -195,29 +198,37 @@ body {
   border-left-width: 0;
   border-width: 10px;
 }
-.pops .line-data {
+.pops .line-data,
+.map-pops .line-data {
   padding: 7px 15px;
   margin: 0;
   line-height: 1.2;
 }
-.pops .line-data.date { padding: 15px; }
-.pops .line-data.date .line {
+.map-pops .line-data { text-transform: uppercase; }
+.map-pops .line-data.solid { font-weight: bold; }
+.pops .line-data.date, .map-pops .line-data.solid.up { padding: 15px; }
+.pops .line-data.date .line,
+.map-pops .line-data .line,
+.map-pops .line-data.date .line  {
   display: block;
   width: 100%;
   height: 1px;
   margin-top: 10px;
   background-color:#b4b4b4;
 }
-.pops .line-data .title {
+.pops .line-data .title,
+.map-pops .line-data .title {
   display: block;
   font-size: 11px;
   text-transform: uppercase;
 }
-.pops .line-data .count {
+.pops .line-data .count,
+.map-pops .line-data .count {
   display: block;
   font-size: 18px;
 }
-.pops .line-data.indicator-selected {
+.pops .line-data.indicator-selected,
+.map-pops .line-data.indicator-selected {
   background-color: #ddd;
 }
 
@@ -259,6 +270,8 @@ body {
   display: block;
   margin: auto;
 }
+#map-viz .s-0 { fill: #e5e5e5; stroke: #e5e5e5; }
+
 #map-viz .m-1-15 { fill: rgb(186, 212, 163); }
 #map-viz .m-1-15:hover { fill: rgb(153, 192, 119); }
 
@@ -304,6 +317,35 @@ body {
   pointer-events: none;
 }
 
+.tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
 /*
 ** Sección de seguimiento de carpeta
 ** -------------------------------
@@ -312,6 +354,8 @@ body {
 /*#tracking-viz {
   height: 600px;
 }*/
+
+.heder-tracking { margin-bottom: 30px; }
 
 .searcher-insert {
   padding: 6px 25px;
@@ -325,7 +369,7 @@ body {
   background-color: #00aa80;
 }
 
-.month-changes {
+.card {
   margin-bottom: 12px;
   padding: 10px 16px 17px;
   border-radius: 4px;
@@ -333,19 +377,19 @@ body {
   -webkit-box-shadow: 0 0 6px rgba(0,0,0,.2);
   -moz-box-shadow: 0 0 6px rgba(0,0,0,.2);
 }
-.month-changes .header { position: relative; }
-.month-changes .month {
+.card .header { position: relative; }
+.card .month {
   text-transform: uppercase;
   margin-right: 20px;
 }
-.month-changes .changes,
-.month-changes .item-changes .item-date {
+.card .changes,
+.card .item-changes .item-date {
   font-size: 12px;
   color: #bbb;
   line-height: 1;
   margin: 0;
 }
-.month-changes .line-changes {
+.card .line-changes {
   display: block;
   width: 125px;
   height: 4px;
@@ -353,31 +397,67 @@ body {
   border-radius: 4px;
   background-color: #ccc;
 }
-.month-changes .line-changes._1_5 { background-color: rgb(186, 212, 163);}
-.month-changes .line-changes._6 { background-color: rgb(237, 210, 104); }
+.card .line-changes._1_5 { background-color: rgb(186, 212, 163);}
+.card .line-changes._6 { background-color: rgb(237, 210, 104); }
 /*
-.month-changes .line-changes._6 { background-color: rgb(226, 137, 59); }
+.card .line-changes._6 { background-color: rgb(226, 137, 59); }
 */
-.month-changes i {
+.card i {
   position: absolute;
   top: 10px;
   right: 0;
 }
 
-.month-changes .body-changes {
+.card .body-changes {
   max-height: 180px;
   overflow-y: scroll;
 }
-.month-changes .item-changes {
+.card .item-changes {
   margin-bottom: 12px;
 }
-.month-changes .item-changes:last-child {
+.card .item-changes:last-child {
   margin-bottom: 0;
 }
-.month-changes .item-changes p.item {
+.card .item-changes p.item {
   margin: 0;
   line-height: 1.4;
   padding-bottom: 5px;
+}
+.card.item-horizontal {
+  height: 140px;
+  overflow-y: scroll;
+}
+.card.item-horizontal h5 { font-weight: bold; }
+
+#horizontal-scroll {
+  margin-bottom: 30px;
+}
+#horizontal-scroll .left-click,
+#horizontal-scroll .right-click {
+  width: 40px;
+  height: 140px;
+  position: absolute;
+  top: 80px;
+  font-size: 60px;
+  line-height: 2.1;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9;
+}
+#horizontal-scroll .left-click:hover,
+#horizontal-scroll .right-click:hover {
+  background-color: #f5f5f5;
+}
+#horizontal-scroll .left-click { left: 0; }
+#horizontal-scroll .right-click { right: 0; }
+
+/* Carousel
+** ------------- */
+
+.owl-carousel .owl-stage-outer {
+  padding: 5px;
+  margin: 0 35px;
 }
 
 /*

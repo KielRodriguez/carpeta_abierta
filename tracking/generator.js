@@ -14,6 +14,9 @@
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
+  var owl = $('.owl-carousel');
+  var titleDatas = "Fecha y hora de la última actualización,Número de Carpeta de Investigación,Etapa del proceso penal,Delito abreviado,Delito completo,Unidad Administrativa,Agencia del Ministerio Público,Sexo del AMPF,Latitud,Longitud,País,Entidad,Municipio,Localidad,Fecha de inicio de la Carpeta de Investigación,Judicializado,Delito judicializado completo,Número de acusados,Incompetencias,Delito por incompetencia completo,Archivo Temporal,Delito por archivo temporal completo,No ejercicio de la Acción Penal,Delito por No ejercicio de la Acción Penal completo,Criterio de Oportunidad,Delito por criterio de oportunidad completo,Sobreseimiento,Delito por sobreseimiento completo,Reclasificación,Delito reclasificado abreviado,Delito reclasificado completo,Sentencia absolutoria,Número de personas absueltas,Número de mujeres absueltas,Número de hombres absueltos,Sentencia condenatoria,Número de personas condenadas,Número de mujeres condenadas,Número de hombres condenados,Mecanismos alternos,Delito por mecanismo alterno,Tipo de mecanismo";
+  titleDatas = titleDatas.split(",");
 
   exports.Generator = {
     vizGenerator: function() {
@@ -26,6 +29,8 @@
           $('#tracking-viz .last-months').append(self.printMonths(val));
         }
       });
+
+      self.createCarousel();
     },
 
     searchAndPrintId: function(folderId, selectedYear) {
@@ -34,9 +39,9 @@
       var folderYearFound = false;
 
       // Limpia datos anteriores
-      $('#tracking-viz .month-changes .header .changes').text('Sin cambios');
-      $('#tracking-viz .month-changes .body-changes .item-changes').remove();
-      $('#tracking-viz .month-changes .header .line-changes').removeClass('_1_5 _6');
+      $('#tracking-viz .card .header .changes').text('Sin cambios');
+      $('#tracking-viz .card .body-changes .item-changes').remove();
+      $('#tracking-viz .card .header .line-changes').removeClass('_1_5 _6');
 
       jsonDatas.forEach(function(val, ind) {
         // Busca el id de carpeta
@@ -63,6 +68,8 @@
             totalChanges = 1;
             // Imprime el número de cambios por mes
             self.printTotalChanges(totalChanges, months[firstChangesMonth]);
+            // Envía los últimos cambios para ser actualizados en el carrusel
+            self.resetCarousel(val.last_changes);
           } else if (firstChangesYear === selectedYear && val.changes > 0) {
             folderYearFound = true;
 
@@ -76,6 +83,8 @@
             totalChanges++;
             // Imprime el número de cambios por mes
             self.printTotalChanges(totalChanges, months[firstChangesMonth]);
+            // Envía los últimos cambios para ser actualizados en el carrusel
+            self.resetCarousel(val.last_changes);
           }
 
           // Itera en todo el array de cambios para sumar cambios
@@ -173,10 +182,16 @@
       });
 
       if (!folderFound) {
+        $('#horizontal-scroll').css('display', 'none');
         alert("No se encontró la carpeta que busca");
+      } else {
+        $('#horizontal-scroll').css('display', 'block');
       }
       if (!folderYearFound) {
+        $('#horizontal-scroll').css('display', 'none');
         alert("No hay cambios encontrados para la carpeta " + folderId + " en el año " + selectedYear);
+      } else {
+        $('#horizontal-scroll').css('display', 'block');
       }
     },
 
@@ -212,7 +227,7 @@
     // Imprime los meses vacíos (sin información)
     printMonths: function(monthName) {
       return '' +
-        '<div class="month-changes ' + monthName + '">' +
+        '<div class="card ' + monthName + '">' +
           '<div class="header">' +
             '<span class="month">' + monthName + '</span>' +
             '<span class="changes">Sin cambios</span>' +
@@ -223,6 +238,52 @@
           '</div>' +
         '</div>'
       ;
+    },
+
+    resetCarousel: function(changes) {
+      var resetYear = parseInt(changes[0].substr(6,4));
+      var resetMonth = parseInt(changes[0].substr(3,2) - 1);
+      var resetDay = changes[0].substr(0,2);
+
+      $('#horizontal-scroll > p').text(resetDay + " " + months[resetMonth] + " " + resetYear);
+
+      changes.forEach(function(val, ind) {
+        var html = '<div class="card item item-horizontal"><h5>'+ titleDatas[ind] +'</h5><p>'+ val +'</p></div>';
+        owl.trigger('remove.owl.carousel', ind);
+        owl.trigger('add.owl.carousel', [html, ind]).trigger('refresh.owl.carousel');
+      });
+    },
+
+    // Crea el carrusel
+    createCarousel: function() {
+      owl.owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: false,
+        responsive: {
+          0: {
+            items:1
+          },
+          600: {
+            items:3
+          },
+          1000: {
+            items:5
+          }
+        }
+      });
+
+      // Configura el botón de la izquiera en vez del nativo
+      $('#tracking .left-click').on('click', function() {
+        owl.trigger('prev.owl.carousel');
+      });
+      // Configura el botón de la derecha en vez del nativo
+      $('#tracking .right-click').on('click', function() {
+        owl.trigger('next.owl.carousel');
+      });
+
+      $('#horizontal-scroll').css('display', 'none');
     }
   }
 })();
