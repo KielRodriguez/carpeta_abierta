@@ -355,6 +355,8 @@ body {
   height: 600px;
 }*/
 
+.heder-tracking { margin-bottom: 30px; }
+
 .searcher-insert {
   padding: 6px 25px;
   color: #fff;
@@ -420,6 +422,42 @@ body {
   margin: 0;
   line-height: 1.4;
   padding-bottom: 5px;
+}
+.card.item-horizontal {
+  height: 140px;
+  overflow-y: scroll;
+}
+.card.item-horizontal h5 { font-weight: bold; }
+
+#horizontal-scroll {
+  margin-bottom: 30px;
+}
+#horizontal-scroll .left-click,
+#horizontal-scroll .right-click {
+  width: 40px;
+  height: 140px;
+  position: absolute;
+  top: 80px;
+  font-size: 60px;
+  line-height: 2.1;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9;
+}
+#horizontal-scroll .left-click:hover,
+#horizontal-scroll .right-click:hover {
+  background-color: #f5f5f5;
+}
+#horizontal-scroll .left-click { left: 0; }
+#horizontal-scroll .right-click { right: 0; }
+
+/* Carousel
+** ------------- */
+
+.owl-carousel .owl-stage-outer {
+  padding: 5px;
+  margin: 0 35px;
 }
 
 /*

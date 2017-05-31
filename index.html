@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/bootstrap-year-calendar.css">
   <link rel='stylesheet' href='css/main.css' />
   <link rel='stylesheet' href='css/carpeta_abierta.css' />
+  <link rel='stylesheet' href='css/owl.carousel.min.css' />
 </head>
 <body>
 
@@ -231,7 +232,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="header-section well">
+          <div class="header-section well heder-tracking ">
             <div class="row">
               <div class="col-md-5">
                 <p><strong>Carpeta</strong></p>
@@ -262,6 +263,16 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div id="horizontal-scroll" class="col-md-12">
+          <h4>Estatus actual de la carpeta</h4>
+          <p>Sin fecha</p>
+          <div class="content owl-carousel owl-theme"><div class="card item item-horizontal"><h5>Fecha y hora de la última actualización</h5><p>1</p></div><div class="card item item-horizontal"><h5>Número de Carpeta de Investigación</h5><p>2</p></div><div class="card item item-horizontal"><h5>Etapa del proceso penal</h5><p>3</p></div><div class="card item item-horizontal"><h5>Delito abreviado</h5><p>4</p></div><div class="card item item-horizontal"><h5>Delito completo</h5><p>5</p></div><div class="card item item-horizontal"><h5>Unidad Administrativa</h5><p>6</p></div><div class="card item item-horizontal"><h5>Agencia del Ministerio Público</h5><p>7</p></div><div class="card item item-horizontal"><h5>Sexo del AMPF</h5><p>8</p></div><div class="card item item-horizontal"><h5>Latitud</h5><p>9</p></div><div class="card item item-horizontal"><h5>Longitud</h5><p>10</p></div><div class="card item item-horizontal"><h5>País</h5><p>11</p></div><div class="card item item-horizontal"><h5>Entidad</h5><p>12</p></div><div class="card item item-horizontal"><h5>Municipio</h5><p>13</p></div><div class="card item item-horizontal"><h5>Localidad</h5><p>14</p></div><div class="card item item-horizontal"><h5>Fecha de inicio de la Carpeta de Investigación</h5><p>15</p></div><div class="card item item-horizontal"><h5>Judicializado</h5><p>16</p></div><div class="card item item-horizontal"><h5>Delito judicializado completo</h5><p>17</p></div><div class="card item item-horizontal"><h5>Número de acusados</h5><p>18</p></div><div class="card item item-horizontal"><h5>Incompetencias</h5><p>19</p></div><div class="card item item-horizontal"><h5>Delito por incompetencia completo</h5><p>20</p></div><div class="card item item-horizontal"><h5>Archivo Temporal</h5><p>21</p></div><div class="card item item-horizontal"><h5>Delito por archivo temporal completo</h5><p>22</p></div><div class="card item item-horizontal"><h5>No ejercicio de la Acción Penal</h5><p>23</p></div><div class="card item item-horizontal"><h5>Delito por No ejercicio de la Acción Penal completo</h5><p>24</p></div><div class="card item item-horizontal"><h5>Criterio de Oportunidad</h5><p>25</p></div><div class="card item item-horizontal"><h5>Delito por criterio de oportunidad completo</h5><p>26</p></div><div class="card item item-horizontal"><h5>Sobreseimiento</h5><p>27</p></div><div class="card item item-horizontal"><h5>Delito por sobreseimiento completo</h5><p>28</p></div><div class="card item item-horizontal"><h5>Reclasificación</h5><p>29</p></div><div class="card item item-horizontal"><h5>Delito reclasificado abreviado</h5><p>30</p></div><div class="card item item-horizontal"><h5>Delito reclasificado completo</h5><p>31</p></div><div class="card item item-horizontal"><h5>Sentencia absolutoria</h5><p>32</p></div><div class="card item item-horizontal"><h5>Número de personas absueltas</h5><p>33</p></div><div class="card item item-horizontal"><h5>Número de mujeres absueltas</h5><p>34</p></div><div class="card item item-horizontal"><h5>Número de hombres absueltos</h5><p>35</p></div><div class="card item item-horizontal"><h5>Sentencia condenatoria</h5><p>36</p></div><div class="card item item-horizontal"><h5>Número de personas condenadas</h5><p>37</p></div><div class="card item item-horizontal"><h5>Número de mujeres condenadas</h5><p>38</p></div><div class="card item item-horizontal"><h5>Número de hombres condenados</h5><p>39</p></div><div class="card item item-horizontal"><h5>Mecanismos alternos</h5><p>40</p></div><div class="card item item-horizontal"><h5>Delito por mecanismo alterno</h5><p>41</p></div><div class="card item item-horizontal"><h5>Tipo de mecanismo</h5><p>42</p></div></div>
+          <div class="left-click"><i class="fa fa-angle-left"></i></div>
+          <div class="right-click"><i class="fa fa-angle-right"></i></div>
+        </div>
+      </div>
       <div id="tracking-viz" class="row">
         <div class="col-md-6 first-months">
         </div>
@@ -275,6 +286,8 @@
 
   <!-- JQuery -->
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <script src="js/owl.carousel.min.js"></script>
   <!-- d3 para viz de mapa -->
   <script src="js/d3-v3.min.js"></script>
   <script src="js/d3-topojson-v1.min.js"></script>
