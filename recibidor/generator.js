@@ -104,6 +104,12 @@
         }
       }
 
+      jsonResult.forEach(function(val, ind) {
+        var pureDat = datas[val.inde].replace(/"/g,"").split(',');
+
+        jsonResult[ind].last_changes = pureDat;
+      });
+
       // Abre el json generado en una ventana aparte
       window.open('data:application/json,' + escape(JSON.stringify(jsonResult)));
     }
