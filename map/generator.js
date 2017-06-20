@@ -9,8 +9,8 @@
 (function() {
   'use strict';
 
-  var jsonDatas = require('http://10.20.55.7/carpeta-abierta/datas/carpa.json');
-  var states = require('http://10.20.55.7/carpeta-abierta/datas/states.json');
+  var jsonDatas = require('../datas/carpa.json');
+  var states = require('../datas/states.json');
 
   exports.Generator = {
     // Agrega el color de acuerdo al total de cambios
@@ -135,7 +135,7 @@
       var svg = d3.select("#map svg#map-viz");
       var path = d3.geo.path().projection(projection);
 
-      d3.json("http://cdn.datos.gob.mx/carpeta_abierta/datas/mx_idMun.json", function(error, mx) {
+      d3.json("../map/mx_idMun.json", function(error, mx) {
         if (error) throw error;
 
         svg.append("g")
