@@ -9,8 +9,8 @@
 (function() {
   'use strict';
 
-  var jsonDatas = require('../datas/carpa.json');
-  var states = require('../datas/states.json');
+  var jsonDatas = require('http://10.20.55.7/carpeta-abierta/datas/carpa.json');
+  var states = require('http://10.20.55.7/carpeta-abierta/datas/states.json');
 
   exports.Generator = {
     // Agrega el color de acuerdo al total de cambios
