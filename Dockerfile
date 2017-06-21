@@ -19,8 +19,13 @@ RUN apt-get install -y nodejs
 RUN apt-get clean;
 
 RUN rm -rf bower_components
+RUN rm -f js/map.bundle.min.js js/main.bundle.min.js
+
 RUN npm install -g bower
+RUN npm install -g webpack
+
 RUN bower --allow-root install
+RUN webpack
 
 EXPOSE 80 443
 
